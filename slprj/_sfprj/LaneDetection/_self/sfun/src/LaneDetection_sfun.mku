@@ -1,0 +1,179 @@
+#--------------------------- Tool Specifications -------------------------
+#
+# Modify the following macros to reflect the tools you wish to use for
+# compiling and linking your code.
+#
+CC = /usr/local/MATLAB/R2020b/bin/mex -R2018a
+LD = $(CC)
+NVCC = nvcc
+ 
+MODEL     = LaneDetection
+TARGET      = sfun
+MODULE_SRCS   = c2_LaneDetection.cu c3_LaneDetection.cu c4_LaneDetection.cu c5_LaneDetection.cu
+MODEL_SRC  = LaneDetection_sfun.cu
+MODEL_REG = LaneDetection_sfun_registry.cu
+MAKEFILE    = LaneDetection_sfun.mku
+MATLAB_ROOT  = /usr/local/MATLAB/R2020b/toolbox/stateflow/stateflow/../../..
+BUILDARGS   = 
+#------------------------------ Include/Lib Path ------------------------------
+ 
+USER_INCLUDES = -I"/home/hmcl/ADcontrol" 
+AUX_INCLUDES = 
+MLSLSF_INCLUDES  = \
+    -I"$(MATLAB_ROOT)/sys/cuda/glnxa64/cuda/include" \
+    -I"$(MATLAB_ROOT)/toolbox/shared/coder/coder/gpucoder/src/cuda/export/include/cuda" \
+    -I"$(MATLAB_ROOT)/toolbox/gpucoder/gpucoder/src/cuda/thrust" \
+    -I"/usr/local/MATLAB/R2020b/extern/include" \
+    -I"/usr/local/MATLAB/R2020b/simulink/include" \
+    -I"/usr/local/MATLAB/R2020b/simulink/include/sf_runtime" \
+    -I"/usr/local/MATLAB/R2020b/stateflow/c/mex/include" \
+    -I"/usr/local/MATLAB/R2020b/rtw/c/src" \
+    -I"/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src" 
+
+THIRD_PARTY_INCLUDES = -I"/usr/local/MATLAB/R2020b/sys/cuda/glnxa64/cudnn/include" -I"/usr/local/MATLAB/R2020b/toolbox/vision/builtins/src/vision/include" -I"/usr/local/MATLAB/R2020b/toolbox/vision/builtins/src/vision/export/include/vision" 
+
+INCLUDE_PATH = $(USER_INCLUDES) $(AUX_INCLUDES) $(MLSLSF_INCLUDES) $(COMPILER_INCLUDES) $(THIRD_PARTY_INCLUDES)
+ 
+#----------------- Compiler and Linker Options --------------------------------
+ 
+# Optimization Options
+ 
+CC_OPTS = -Xcompiler "" 
+CPP_REQ_DEFINES = -DMATLAB_MEX_FILE
+ 
+# Uncomment this line to move warning level to W4
+# cflags = $(cflags:W3=W4)
+CFLAGS = $(CPP_REQ_DEFINES) $(INCLUDE_PATH) CFLAGS="\$$CFLAGS $(CC_OPTS)"
+CUFLAGS_NO_RDC = $(CPP_REQ_DEFINES) $(INCLUDE_PATH) $(CC_OPTS) -arch sm_75 -DMW_CUDA_ARCH=750 -Xcompiler -fPIC,-fno-gnu-unique -noprof -ldir "$(MATLAB_ROOT)/bin/glnxa64" -I "$(MATLAB_ROOT)/sys/cuda/glnxa64/cuda/include"
+CUFLAGS = $(CUFLAGS_NO_RDC) -rdc=true
+ 
+LDFLAGS = -Xlinker " "
+ 
+AUXLDFLAGS = 
+#----------------------------- Source Files -----------------------------------
+ 
+REQ_SRCS  = $(MODEL_SRC) $(MODEL_REG) $(MODULE_SRCS)
+
+USER_OBJS =
+
+AUX_ABS_OBJS =
+THIRD_PARTY_OBJS     = \
+		MWElementwiseAffineLayer.o \
+		MWFusedConvReLULayer.o \
+		cnn_api.o \
+		MWCNNLayerImpl.o \
+		MWElementwiseAffineLayerImpl.o \
+		MWElementwiseAffineLayerImplKernel.o \
+		MWFusedConvReLULayerImpl.o \
+		MWTargetNetworkImpl.o \
+		MWCustomLayerForCuDNN.o \
+		MWConcatenationLayer.o \
+		MWConvLayer.o \
+		MWExponentialLayer.o \
+		MWSigmoidLayer.o \
+		MWYoloExtractionLayer.o \
+		MWYoloSoftmaxLayer.o \
+		MWConcatenationLayerImpl.o \
+		MWConvLayerImpl.o \
+		MWExponentialLayerImpl.o \
+		MWExponentialLayerImplKernel.o \
+		MWSigmoidLayerImpl.o \
+		MWYoloExtractionLayerImpl.o \
+		MWYoloExtractionLayerImplKernel.o \
+		MWYoloSoftmaxLayerImpl.o \
+		insertMarkerUtilsCore.o \
+		cvstDraw.o \
+		insertShapeAndMarkerUtils.o \
+		insertShapeUtilsCore.o \
+
+REQ_OBJS = $(REQ_SRCS:.cpp=.o)
+REQ_OBJS2 = $(REQ_OBJS:.c=.o)
+REQ_OBJS3 = $(REQ_OBJS2:.cu=.o)
+OBJS = $(REQ_OBJS3) $(USER_OBJS) $(AUX_ABS_OBJS) $(THIRD_PARTY_OBJS)
+OBJLIST_FILE = LaneDetection_sfun.mol
+SFCLIB = 
+AUX_LNK_OBJS = 
+USER_LIBS = 
+PARLIB = 
+CUDALIB = -I"$(MATLAB_ROOT)/sys/cuda/glnxa64/cuda/include" -L"$(MATLAB_ROOT)/sys/cuda/glnxa64/cuda/lib64"  -l:libcudart.so.10.2.89 -l:libcublas.so.10 -l:libcusolver.so.10 -l:libcufft.so.10
+GPUCODER_CUDA_UTIL_LIB = "$(MATLAB_ROOT)/bin/glnxa64/libmwgpucoder_cuda.a"
+  MAPCSF = /usr/local/MATLAB/R2020b/tools/glnxa64/mapcsf
+   # RUN_MAPCSF_ON_UNIX is defined only if MAPCSF exists on this platform.
+   ifneq ($(wildcard $(MAPCSF)),) # run MAPCSF if it exists on this platform
+      RUN_MAPCSF_ON_UNIX =  /usr/local/MATLAB/R2020b/tools/glnxa64/mapcsf $@
+   endif
+ 
+#--------------------------------- Rules --------------------------------------
+ 
+MEX_FILE_NAME = $(MODEL)_$(TARGET).mexa64
+ 
+ SYSLIB =  -L/usr/local/MATLAB/R2020b/bin/glnxa64 -l:libcudnn.so.7 -l:libcublas.so.10 "-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwsf_runtime" "-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lfixedpoint" "-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lut" "-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lemlrt" "-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwstringutil" "-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwmathutil" "-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwblas" "-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwsl_log_load_blocks" "-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwsimulink" "-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwsl_sfcn_cov_bridge" "-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lcovrt" "-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwlapack" "-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwsl_simtarget_core" "-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwsl_simtarget_instrumentation" "-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwslexec_simlog" "-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwslccrt" "-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwipp"
+
+ $(MEX_FILE_NAME): $(MAKEFILE) $(OBJS) $(SFCLIB) $(AUX_LNK_OBJS) $(USER_LIBS)
+	@echo ### Linking ...
+	$(NVCC) -shared -o $(MEX_FILE_NAME) $(OBJS) $(AUX_LNK_OBJS) $(USER_LIBS) $(SFCLIB) $(PARLIB) $(IPPLIB) $(THIRD_PARTY_LIBS) $(SYSLIB) $(CUDALIB) $(GPUCODER_CUDA_UTIL_LIB) $(LDFLAGS) -arch sm_75 -DMW_CUDA_ARCH=750
+	$(RUN_MAPCSF_ON_UNIX)
+
+%.o :    %.c
+	$(NVCC) -c $(CUFLAGS) $<
+
+%.o :    %.cpp
+	$(NVCC) -c $(CUFLAGS) $<
+
+%.o :    %.cu
+	$(NVCC) -c $(CUFLAGS) $<
+
+MWElementwiseAffineLayer.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWElementwiseAffineLayer.cpp
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWElementwiseAffineLayer.cpp
+MWFusedConvReLULayer.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWFusedConvReLULayer.cpp
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWFusedConvReLULayer.cpp
+cnn_api.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/cnn_api.cpp
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/cnn_api.cpp
+MWCNNLayerImpl.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWCNNLayerImpl.cu
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWCNNLayerImpl.cu
+MWElementwiseAffineLayerImpl.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWElementwiseAffineLayerImpl.cu
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWElementwiseAffineLayerImpl.cu
+MWElementwiseAffineLayerImplKernel.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWElementwiseAffineLayerImplKernel.cu
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWElementwiseAffineLayerImplKernel.cu
+MWFusedConvReLULayerImpl.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWFusedConvReLULayerImpl.cu
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWFusedConvReLULayerImpl.cu
+MWTargetNetworkImpl.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWTargetNetworkImpl.cu
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWTargetNetworkImpl.cu
+MWCustomLayerForCuDNN.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWCustomLayerForCuDNN.cpp
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWCustomLayerForCuDNN.cpp
+MWConcatenationLayer.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWConcatenationLayer.cpp
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWConcatenationLayer.cpp
+MWConvLayer.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWConvLayer.cpp
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWConvLayer.cpp
+MWExponentialLayer.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWExponentialLayer.cpp
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWExponentialLayer.cpp
+MWSigmoidLayer.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWSigmoidLayer.cpp
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWSigmoidLayer.cpp
+MWYoloExtractionLayer.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWYoloExtractionLayer.cpp
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWYoloExtractionLayer.cpp
+MWYoloSoftmaxLayer.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWYoloSoftmaxLayer.cpp
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWYoloSoftmaxLayer.cpp
+MWConcatenationLayerImpl.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWConcatenationLayerImpl.cu
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWConcatenationLayerImpl.cu
+MWConvLayerImpl.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWConvLayerImpl.cu
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWConvLayerImpl.cu
+MWExponentialLayerImpl.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWExponentialLayerImpl.cu
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWExponentialLayerImpl.cu
+MWExponentialLayerImplKernel.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWExponentialLayerImplKernel.cu
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWExponentialLayerImplKernel.cu
+MWSigmoidLayerImpl.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWSigmoidLayerImpl.cu
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWSigmoidLayerImpl.cu
+MWYoloExtractionLayerImpl.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWYoloExtractionLayerImpl.cu
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWYoloExtractionLayerImpl.cu
+MWYoloExtractionLayerImplKernel.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWYoloExtractionLayerImplKernel.cu
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWYoloExtractionLayerImplKernel.cu
+MWYoloSoftmaxLayerImpl.o :	/home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWYoloSoftmaxLayerImpl.cu
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /home/hmcl/ADcontrol/slprj/_sfprj/LaneDetection/_self/sfun/src/MWYoloSoftmaxLayerImpl.cu
+insertMarkerUtilsCore.o :	/usr/local/MATLAB/R2020b/toolbox/vision/builtins/src/vision/insertMarkerUtilsCore.cpp
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /usr/local/MATLAB/R2020b/toolbox/vision/builtins/src/vision/insertMarkerUtilsCore.cpp
+cvstDraw.o :	/usr/local/MATLAB/R2020b/toolbox/vision/builtins/src/vision/cvstDraw.cpp
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /usr/local/MATLAB/R2020b/toolbox/vision/builtins/src/vision/cvstDraw.cpp
+insertShapeAndMarkerUtils.o :	/usr/local/MATLAB/R2020b/toolbox/vision/builtins/src/vision/insertShapeAndMarkerUtils.cpp
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /usr/local/MATLAB/R2020b/toolbox/vision/builtins/src/vision/insertShapeAndMarkerUtils.cpp
+insertShapeUtilsCore.o :	/usr/local/MATLAB/R2020b/toolbox/vision/builtins/src/vision/insertShapeUtilsCore.cpp
+	$(NVCC) -c $(CUFLAGS_NO_RDC) /usr/local/MATLAB/R2020b/toolbox/vision/builtins/src/vision/insertShapeUtilsCore.cpp

@@ -1,0 +1,53 @@
+MWElementwiseAffineLayer.o
+MWFusedConvReLULayer.o
+cnn_api.o
+MWCNNLayerImpl.o
+MWElementwiseAffineLayerImpl.o
+MWElementwiseAffineLayerImplKernel.o
+MWFusedConvReLULayerImpl.o
+MWTargetNetworkImpl.o
+MWCustomLayerForCuDNN.o
+MWConcatenationLayer.o
+MWConvLayer.o
+MWExponentialLayer.o
+MWSigmoidLayer.o
+MWYoloExtractionLayer.o
+MWYoloSoftmaxLayer.o
+MWConcatenationLayerImpl.o
+MWConvLayerImpl.o
+MWExponentialLayerImpl.o
+MWExponentialLayerImplKernel.o
+MWSigmoidLayerImpl.o
+MWYoloExtractionLayerImpl.o
+MWYoloExtractionLayerImplKernel.o
+MWYoloSoftmaxLayerImpl.o
+LaneDetection_sfun.o
+c2_LaneDetection.o
+c3_LaneDetection.o
+c4_LaneDetection.o
+c5_LaneDetection.o
+LaneDetection_sfun_registry.o
+insertMarkerUtilsCore.o
+cvstDraw.o
+insertShapeAndMarkerUtils.o
+insertShapeUtilsCore.o
+-L/usr/local/MATLAB/R2020b/bin/glnxa64
+-l:libcudnn.so.7
+-l:libcublas.so.10
+"-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwsf_runtime"
+"-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lfixedpoint"
+"-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lut"
+"-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lemlrt"
+"-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwstringutil"
+"-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwmathutil"
+"-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwblas"
+"-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwsl_log_load_blocks"
+"-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwsimulink"
+"-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwsl_sfcn_cov_bridge"
+"-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lcovrt"
+"-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwlapack"
+"-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwsl_simtarget_core"
+"-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwsl_simtarget_instrumentation"
+"-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwslexec_simlog"
+"-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwslccrt"
+"-L/usr/local/MATLAB/R2020b/bin/glnxa64" "-lmwipp"
