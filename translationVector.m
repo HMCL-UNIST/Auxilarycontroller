@@ -2,7 +2,7 @@ function translation = translationVector(yaw, pitch, roll)
 
 % Copyright 2020 The MathWorks, Inc.
 
-SensorLocation = [-5 0];
+SensorLocation = [0 0];
 Height = 2.1798;    % mounting height in meters from the ground
 rotationMatrix = (...
     rotZ(yaw)*... % last rotation

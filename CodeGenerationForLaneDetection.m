@@ -8,7 +8,6 @@ envCfg.DeepLibTarget = 'cudnn';
 envCfg.DeepCodegen = 1;
 envCfg.Quiet = 1;
 coder.checkGpuInstall(envCfg);
-
 %% Lane and Vehicle Detection Simulink Model
 open_system('LaneDetection');
 %% Run the Simulation

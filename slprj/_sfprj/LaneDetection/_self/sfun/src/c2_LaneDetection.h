@@ -500,8 +500,8 @@ struct SFc2_LaneDetectionInstanceStruct
   void *c2_fEmlrtCtx;
   real_T (*c2_in_1)[154587];
   real32_T (*c2_out_1)[6];
-  real_T (*c2_gpu_r_f1)[154587];
   real_T (*c2_gpu_in_1)[154587];
+  real_T (*c2_gpu_r_f1)[154587];
 };
 
 #endif                                 /*struct_SFc2_LaneDetectionInstanceStruct*/

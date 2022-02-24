@@ -40,8 +40,8 @@ static emlrtMCInfo c4_emlrtMCI = { 47, /* lineNo */
   "/usr/local/MATLAB/R2020b/toolbox/eml/lib/matlab/elmat/repmat.m"/* pName */
 };
 
-static __device__ real32_T c4_gpu_In[1229760];
-static __device__ real32_T c4_gpu_In_1[1229760];
+static __device__ real32_T c4_gpu_In[921600];
+static __device__ real32_T c4_gpu_In_1[921600];
 
 /* Function Declarations */
 static void initialize_c4_LaneDetection(SFc4_LaneDetectionInstanceStruct
@@ -73,10 +73,10 @@ static void mdl_cleanup_runtime_resources_c4_LaneDetection
 static void initSimStructsc4_LaneDetection(SFc4_LaneDetectionInstanceStruct
   *chartInstance);
 static void c4_emlrt_marshallIn(SFc4_LaneDetectionInstanceStruct *chartInstance,
-  const mxArray *c4_c_In, const char_T *c4_identifier, real32_T c4_y[1229760]);
+  const mxArray *c4_c_In, const char_T *c4_identifier, real32_T c4_y[921600]);
 static void c4_b_emlrt_marshallIn(SFc4_LaneDetectionInstanceStruct
   *chartInstance, const mxArray *c4_u, const emlrtMsgIdentifier *c4_parentId,
-  real32_T c4_y[1229760]);
+  real32_T c4_y[921600]);
 static uint8_T c4_c_emlrt_marshallIn(SFc4_LaneDetectionInstanceStruct
   *chartInstance, const mxArray *c4_b_is_active_c4_LaneDetection, const char_T
   *c4_identifier);
@@ -85,15 +85,15 @@ static uint8_T c4_d_emlrt_marshallIn(SFc4_LaneDetectionInstanceStruct
 static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
   boolean_T c4_b_laneFound, real32_T c4_b_ltPts[56], real32_T c4_b_rtPts[56],
   real_T c4_b_bboxes_data[], int32_T c4_bboxes_size[2], real32_T
-  c4_b_scores_data[], int32_T c4_scores_size[2], real32_T c4_c_In[1229760]);
+  c4_b_scores_data[], int32_T c4_scores_size[2], real32_T c4_c_In[921600]);
 static __global__ void c4_sf_gateway_c4_LaneDetection_kernel1();
 static __global__ void c4_eML_blk_kernel_kernel2(const real_T c4_b_bboxes_data[],
   const int32_T c4_bboxes_size[2], int32_T c4_position_data[80]);
 static __global__ void c4_eML_blk_kernel_kernel3(const int8_T c4_color_data[60],
   const int32_T c4_color_size[2], int8_T c4_b_color_data[60]);
-static __global__ void c4_eML_blk_kernel_kernel4(real32_T c4_c_In[1229760],
-  real32_T c4_b_I[1229760]);
-static __global__ void c4_eML_blk_kernel_kernel5(uint8_T c4_pixCount[854]);
+static __global__ void c4_eML_blk_kernel_kernel4(real32_T c4_c_In[921600],
+  real32_T c4_b_I[921600]);
+static __global__ void c4_eML_blk_kernel_kernel5(uint8_T c4_pixCount[640]);
 static __global__ void c4_eML_blk_kernel_kernel6(const int32_T c4_position_data
   [80], const int32_T c4_position_size[2], int32_T c4_positionOut_data[112]);
 static __global__ void c4_eML_blk_kernel_kernel7(const int8_T c4_color_data[60],
@@ -360,9 +360,9 @@ static __global__ void c4_eML_blk_kernel_kernel114(const int32_T c4_positionOut
   [112], c4_emxArray_cell_wrap_21_28 *c4_pos);
 static __global__ void c4_eML_blk_kernel_kernel115(const
   c4_emxArray_cell_wrap_21_28 *c4_pos, int32_T c4_positionOut_data[112]);
-static __global__ void c4_eML_blk_kernel_kernel116(real32_T c4_c_In[1229760],
-  real32_T c4_b_I[1229760]);
-static __global__ void c4_eML_blk_kernel_kernel117(uint8_T c4_pixCount[854]);
+static __global__ void c4_eML_blk_kernel_kernel116(real32_T c4_c_In[921600],
+  real32_T c4_b_I[921600]);
+static __global__ void c4_eML_blk_kernel_kernel117(uint8_T c4_pixCount[640]);
 static __global__ void c4_eML_blk_kernel_kernel118(const int32_T
   c4_positionOut_data[112], int32_T c4_b_positionOut_data[112]);
 static __global__ void c4_eML_blk_kernel_kernel119(const int8_T c4_color[84],
@@ -485,27 +485,27 @@ static __global__ void c4_eML_blk_kernel_kernel177(const int32_T c4_positionOut
   [112], c4_emxArray_cell_wrap_21_28 *c4_pos);
 static __global__ void c4_eML_blk_kernel_kernel178(const
   c4_emxArray_cell_wrap_21_28 *c4_pos, int32_T c4_positionOut_data[112]);
-static __global__ void c4_eML_blk_kernel_kernel179(real32_T c4_c_In[1229760],
-  real32_T c4_b_I[1229760]);
-static __global__ void c4_eML_blk_kernel_kernel180(uint8_T c4_pixCount[854]);
+static __global__ void c4_eML_blk_kernel_kernel179(real32_T c4_c_In[921600],
+  real32_T c4_b_I[921600]);
+static __global__ void c4_eML_blk_kernel_kernel180(uint8_T c4_pixCount[640]);
 static __global__ void c4_eML_blk_kernel_kernel181(const int32_T
   c4_positionOut_data[112], int32_T c4_b_positionOut_data[112]);
 static __global__ void c4_eML_blk_kernel_kernel182(const int8_T c4_color[84],
   real32_T c4_b_color[84]);
-static __global__ void c4_eML_blk_kernel_kernel183(const real32_T c4_c_In
-  [1229760], real32_T c4_b_I[1229760]);
+static __global__ void c4_eML_blk_kernel_kernel183(const real32_T c4_c_In[921600],
+  real32_T c4_b_I[921600]);
 static __global__ void c4_eML_blk_kernel_kernel184(const real32_T c4_b_ltPts[56],
   int32_T c4_position[56]);
 static __global__ void c4_eML_blk_kernel_kernel185(const int8_T c4_fv1[84],
   real32_T c4_color[84]);
-static __global__ void c4_eML_blk_kernel_kernel186(uint8_T c4_pixCount[854]);
-static __global__ void c4_eML_blk_kernel_kernel187(const real32_T c4_c_In
-  [1229760], real32_T c4_b_I[1229760]);
+static __global__ void c4_eML_blk_kernel_kernel186(uint8_T c4_pixCount[640]);
+static __global__ void c4_eML_blk_kernel_kernel187(const real32_T c4_c_In[921600],
+  real32_T c4_b_I[921600]);
 static __global__ void c4_eML_blk_kernel_kernel188(const real32_T c4_b_rtPts[56],
   int32_T c4_position[56]);
 static __global__ void c4_eML_blk_kernel_kernel189(const int8_T c4_fv1[84],
   real32_T c4_color[84]);
-static __global__ void c4_eML_blk_kernel_kernel190(uint8_T c4_pixCount[854]);
+static __global__ void c4_eML_blk_kernel_kernel190(uint8_T c4_pixCount[640]);
 static void init_dsm_address_info(SFc4_LaneDetectionInstanceStruct
   *chartInstance);
 static void init_simulink_io_address(SFc4_LaneDetectionInstanceStruct
@@ -523,104 +523,104 @@ static void initialize_c4_LaneDetection(SFc4_LaneDetectionInstanceStruct
   _sfTime_ = sf_get_time(chartInstance->S);
   chartInstance->c4_is_active_c4_LaneDetection = 0U;
   cudaGetLastError();
-  cudaMalloc(&chartInstance->c4_gpu_textLocAndWidth_data, 320UL);
-  cudaMalloc(&chartInstance->c4_c_gpu_vlen, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_cv7, 6UL);
-  cudaMalloc(&chartInstance->c4_gpu_lenEndSegment, 8UL);
-  cudaMalloc(&chartInstance->c4_gpu_vlen, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_y, 8UL);
-  cudaMalloc(&chartInstance->c4_gpu_iv, 8UL);
-  cudaMalloc(&chartInstance->c4_gpu_ii_size, 8UL);
-  cudaMalloc(&chartInstance->c4_gpu_nz, 4UL);
-  cudaMalloc(&chartInstance->c4_b_gpu_vlen, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_i14, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_lenThisSegment, 8UL);
-  cudaMalloc(&chartInstance->c4_gpu_isNewLineChar_data, 29UL);
-  cudaMalloc(&chartInstance->c4_gpu_isNewLineChar_size, 8UL);
-  cudaMalloc(&chartInstance->c4_gpu_lenFirstSegment, 8UL);
-  cudaMalloc(&chartInstance->c4_gpu_color_data, 240UL);
-  cudaMalloc(&chartInstance->c4_b_gpu_nz, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_k, 4UL);
-  cudaMalloc(&chartInstance->c4_b_gpu_outsize, 2UL);
   cudaMalloc(&chartInstance->c4_b_gpu_iv1, 8UL);
-  cudaMalloc(&chartInstance->c4_gpu_i13, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_i8, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_i, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_q1, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_textPosition_size, 8UL);
-  cudaMalloc(&chartInstance->c4_d_gpu_vlen, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_shapeHeight_data, 80UL);
-  cudaMalloc(&chartInstance->c4_gpu_pts, 448UL);
+  cudaMalloc(&chartInstance->c4_f_gpu_vlen, 4UL);
+  cudaMalloc(&chartInstance->c4_gpu_rtPts, 224UL);
+  cudaMalloc(&chartInstance->c4_gpu_thisTextU16_data, 29UL);
+  cudaMalloc(&chartInstance->c4_b_gpu_uv4_data, 144UL);
+  cudaMalloc(&chartInstance->c4_gpu_i7, 4UL);
+  cudaMalloc(&chartInstance->c4_b_gpu_color, 336UL);
+  cudaMalloc(&chartInstance->c4_h_gpu_vlen, 4UL);
+  cudaMalloc(&chartInstance->c4_b_gpu_positionOut_data, 448UL);
+  cudaMalloc(&chartInstance->c4_c_gpu_vlen, 4UL);
+  cudaMalloc(&chartInstance->c4_b_gpu_vlen, 4UL);
+  cudaMalloc(&chartInstance->c4_b_gpu_textLocAndWidth_size, 4UL);
+  cudaMalloc(&chartInstance->c4_b_gpu_color_data, 240UL);
+  cudaMalloc(&chartInstance->c4_b_gpu_textLocAndWidth_data, 320UL);
+  cudaMalloc(&chartInstance->c4_d_gpu_nz, 4UL);
+  cudaMalloc(&chartInstance->c4_gpu_i3, 4UL);
   cudaMalloc(&chartInstance->c4_gpu_position_size, 8UL);
+  cudaMalloc(&chartInstance->c4_gpu_textLocAndWidth_size, 8UL);
+  cudaMalloc(&chartInstance->c4_gpu_i12, 4UL);
+  cudaMalloc(&chartInstance->c4_gpu_i13, 4UL);
+  cudaMalloc(&chartInstance->c4_gpu_lenFirstSegment, 8UL);
+  cudaMalloc(&chartInstance->c4_b_gpu_nz, 4UL);
+  cudaMalloc(&chartInstance->c4_gpu_thisGlyphCut_float_data, 1056UL);
+  cudaMalloc(&chartInstance->c4_gpu_cv8, 6UL);
   cudaMalloc(&chartInstance->c4_gpu_uv4_size, 8UL);
-  cudaMalloc(&chartInstance->c4_gpu_str1, 30UL);
-  cudaMalloc(&chartInstance->c4_gpu_iv1, 261UL);
+  cudaMalloc(&chartInstance->c4_gpu_vlen, 4UL);
+  cudaMalloc(&chartInstance->c4_gpu_isNewLineChar_data, 29UL);
+  cudaMalloc(&chartInstance->c4_gpu_thisGlyphIdx_1b, 2UL);
+  cudaMalloc(&chartInstance->c4_b_gpu_color_size, 8UL);
+  cudaMalloc(&chartInstance->c4_gpu_textPosition_data, 160UL);
+  cudaMalloc(&chartInstance->c4_gpu_y, 8UL);
+  cudaMalloc(&chartInstance->c4_gpu_color, 84UL);
+  cudaMalloc(&chartInstance->c4_c_gpu_k, 4UL);
+  cudaMalloc(&chartInstance->c4_d_gpu_k, 4UL);
+  cudaMalloc(&chartInstance->c4_e_gpu_vlen, 4UL);
+  cudaMalloc(&chartInstance->c4_gpu_i6, 4UL);
+  cudaMalloc(&chartInstance->c4_gpu_x_size, 8UL);
+  cudaMalloc(&chartInstance->c4_c_gpu_nz, 4UL);
+  cudaMalloc(&chartInstance->c4_gpu_color_size, 8UL);
   cudaMalloc(&chartInstance->c4_gpu_positionOut, 448UL);
+  cudaMalloc(&chartInstance->c4_gpu_uv4_data, 10664UL);
+  cudaMalloc(&chartInstance->c4_gpu_position_data, 320UL);
+  cudaMalloc(&chartInstance->c4_gpu_i25, 4UL);
+  cudaMalloc(&chartInstance->c4_c_gpu_color_data, 60UL);
+  cudaMalloc(&chartInstance->c4_gpu_uv4, 10664UL);
+  cudaMalloc(&chartInstance->c4_gpu_i, 4UL);
+  cudaMalloc(&chartInstance->c4_gpu_i11, 4UL);
+  cudaMalloc(&chartInstance->c4_gpu_lenEndSegment, 8UL);
+  cudaMalloc(&chartInstance->c4_gpu_q1, 4UL);
+  cudaMalloc(&chartInstance->c4_gpu_shapeHeight_data, 80UL);
+  cudaMalloc(&chartInstance->c4_gpu_k, 4UL);
+  cudaMalloc(&chartInstance->c4_g_gpu_vlen, 4UL);
+  cudaMalloc(&chartInstance->c4_d_gpu_vlen, 4UL);
+  cudaMalloc(&chartInstance->c4_gpu_pixCount, 640UL);
+  cudaMalloc(&chartInstance->c4_b_gpu_k, 4UL);
+  cudaMalloc(&chartInstance->c4_gpu_x_data, 29UL);
+  cudaMalloc(&chartInstance->c4_gpu_i34, 4UL);
+  cudaMalloc(&chartInstance->c4_gpu_i15, 4UL);
+  cudaMalloc(&chartInstance->c4_gpu_i14, 4UL);
+  cudaMalloc(&chartInstance->c4_gpu_i10, 4UL);
+  cudaMalloc(&chartInstance->c4_gpu_iv, 8UL);
+  cudaMalloc(&chartInstance->c4_gpu_outsize, 2UL);
+  cudaMalloc(&chartInstance->c4_gpu_idxNewlineChar_data, 29UL);
+  cudaMalloc(&chartInstance->c4_gpu_fv1, 84UL);
+  cudaMalloc(&chartInstance->c4_gpu_bboxes_size, 8UL);
+  cudaMalloc(&chartInstance->c4_gpu_lenThisSegment, 8UL);
+  cudaMalloc(&chartInstance->c4_gpu_pos, 564UL);
+  cudaMalloc(&chartInstance->c4_gpu_positionOut_data, 448UL);
+  cudaMalloc(&chartInstance->c4_gpu_nz, 4UL);
+  cudaMalloc(&chartInstance->c4_gpu_textLocAndWidth_data, 80UL);
+  cudaMalloc(&chartInstance->c4_gpu_cv7, 6UL);
+  cudaMalloc(&chartInstance->c4_gpu_ltPts, 224UL);
+  cudaMalloc(&chartInstance->c4_gpu_pts, 448UL);
+  cudaMalloc(&chartInstance->c4_gpu_i8, 4UL);
+  cudaMalloc(&chartInstance->c4_gpu_outsize_idx_1, 1UL);
+  cudaMalloc(&chartInstance->c4_gpu_uv, 512UL);
   cudaMalloc(&chartInstance->c4_gpu_thisGlyphCut_float_size, 8UL);
   cudaMalloc(&chartInstance->c4_gpu_i1, 4UL);
-  cudaMalloc(&chartInstance->c4_b_gpu_color_data, 60UL);
-  cudaMalloc(&chartInstance->c4_c_gpu_color_data, 60UL);
-  cudaMalloc(&chartInstance->c4_gpu_i12, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_fv1, 84UL);
-  cudaMalloc(&chartInstance->c4_b_gpu_textLocAndWidth_data, 80UL);
-  cudaMalloc(&chartInstance->c4_gpu_cv8, 6UL);
-  cudaMalloc(&chartInstance->c4_gpu_i34, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_I, 4919040UL);
-  cudaMalloc(&chartInstance->c4_d_gpu_nz, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_textPosition_data, 160UL);
-  cudaMalloc(&chartInstance->c4_gpu_textLocAndWidth_size, 8UL);
-  cudaMalloc(&chartInstance->c4_gpu_textColor_data, 60UL);
-  cudaMalloc(&chartInstance->c4_gpu_thisCharcodes_1b_size, 8UL);
-  cudaMalloc(&chartInstance->c4_gpu_x_size, 8UL);
-  cudaMalloc(&chartInstance->c4_gpu_outsize, 2UL);
-  cudaMalloc(&chartInstance->c4_gpu_i7, 4UL);
-  cudaMalloc(&chartInstance->c4_h_gpu_vlen, 4UL);
-  cudaMalloc(&chartInstance->c4_f_gpu_vlen, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_uv, 512UL);
-  cudaMalloc(&chartInstance->c4_b_gpu_color, 84UL);
-  cudaMalloc(&chartInstance->c4_gpu_idxNewlineChar_data, 29UL);
-  cudaMalloc(&chartInstance->c4_gpu_outsize_idx_1, 1UL);
-  cudaMalloc(&chartInstance->c4_gpu_pos, 564UL);
-  cudaMalloc(&chartInstance->c4_b_gpu_In, 4919040UL);
-  cudaMalloc(&chartInstance->c4_gpu_thisGlyphIdx_1b, 2UL);
-  cudaMalloc(&chartInstance->c4_gpu_x_data, 29UL);
-  cudaMalloc(&chartInstance->c4_gpu_shapeWidth_data, 80UL);
-  cudaMalloc(&chartInstance->c4_b_gpu_textLocAndWidth_size, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_bboxes_size, 8UL);
-  cudaMalloc(&chartInstance->c4_gpu_uv4, 10664UL);
-  cudaMalloc(&chartInstance->c4_b_gpu_uv4_data, 144UL);
-  cudaMalloc(&chartInstance->c4_gpu_color, 336UL);
-  cudaMalloc(&chartInstance->c4_gpu_i3, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_i6, 4UL);
   cudaMalloc(&chartInstance->c4_gpu_prevpt, 8UL);
-  cudaMalloc(&chartInstance->c4_gpu_color_size, 8UL);
-  cudaMalloc(&chartInstance->c4_d_gpu_k, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_thisTextU16_data, 29UL);
+  cudaMalloc(&chartInstance->c4_gpu_I, 3686400UL);
+  cudaMalloc(&chartInstance->c4_gpu_shapeWidth_data, 80UL);
   cudaMalloc(&chartInstance->c4_gpu_ii_data, 29UL);
-  cudaMalloc(&chartInstance->c4_b_gpu_k, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_i25, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_rtPts, 224UL);
-  cudaMalloc(&chartInstance->c4_gpu_pixCount, 854UL);
-  cudaMalloc(&chartInstance->c4_e_gpu_vlen, 4UL);
-  cudaMalloc(&chartInstance->c4_b_gpu_positionOut_data, 448UL);
-  cudaMalloc(&chartInstance->c4_b_gpu_color_size, 8UL);
-  cudaMalloc(&chartInstance->c4_g_gpu_vlen, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_thisCharcodes_1b_data, 58UL);
-  cudaMalloc(&chartInstance->c4_gpu_ltPts, 224UL);
-  cudaMalloc(&chartInstance->c4_gpu_i11, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_uv4_data, 10664UL);
-  cudaMalloc(&chartInstance->c4_gpu_i5, 4UL);
-  cudaMalloc(&chartInstance->c4_c_gpu_k, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_thisTextU16_size, 8UL);
-  cudaMalloc(&chartInstance->c4_gpu_i28, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_i15, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_positionOut_data, 448UL);
-  cudaMalloc(&chartInstance->c4_gpu_thisGlyphCut_float_data, 1056UL);
-  cudaMalloc(&chartInstance->c4_gpu_position_data, 320UL);
-  cudaMalloc(&chartInstance->c4_c_gpu_nz, 4UL);
-  cudaMalloc(&chartInstance->c4_gpu_i10, 4UL);
+  cudaMalloc(&chartInstance->c4_gpu_textPosition_size, 8UL);
+  cudaMalloc(&chartInstance->c4_gpu_iv1, 261UL);
+  cudaMalloc(&chartInstance->c4_gpu_thisCharcodes_1b_size, 8UL);
   cudaMalloc(&chartInstance->c4_gpu_position, 224UL);
+  cudaMalloc(&chartInstance->c4_gpu_i28, 4UL);
+  cudaMalloc(&chartInstance->c4_gpu_thisTextU16_size, 8UL);
   cudaMalloc(&chartInstance->c4_gpu_bboxes_data, 80U * sizeof(real_T));
+  cudaMalloc(&chartInstance->c4_b_gpu_In, 3686400UL);
+  cudaMalloc(&chartInstance->c4_gpu_str1, 30UL);
+  cudaMalloc(&chartInstance->c4_gpu_thisCharcodes_1b_data, 58UL);
+  cudaMalloc(&chartInstance->c4_gpu_i5, 4UL);
+  cudaMalloc(&chartInstance->c4_b_gpu_outsize, 2UL);
+  cudaMalloc(&chartInstance->c4_gpu_textColor_data, 60UL);
+  cudaMalloc(&chartInstance->c4_gpu_ii_size, 8UL);
+  cudaMalloc(&chartInstance->c4_gpu_color_data, 60UL);
+  cudaMalloc(&chartInstance->c4_gpu_isNewLineChar_size, 8UL);
 }
 
 static void initialize_params_c4_LaneDetection(SFc4_LaneDetectionInstanceStruct *
@@ -664,7 +664,7 @@ static const mxArray *get_sim_state_c4_LaneDetection
   sf_mex_assign(&c4_y, sf_mex_createcellmatrix(2, 1), false);
   c4_b_y = NULL;
   sf_mex_assign(&c4_b_y, sf_mex_create("y", *chartInstance->c4_b_In, 1, 0U, 1U,
-    0U, 3, 480, 854, 3), false);
+    0U, 3, 480, 640, 3), false);
   sf_mex_setcell(c4_y, 0, c4_b_y);
   c4_c_y = NULL;
   sf_mex_assign(&c4_c_y, sf_mex_create("y",
@@ -701,13 +701,13 @@ static void sf_gateway_c4_LaneDetection(SFc4_LaneDetectionInstanceStruct
   real32_T c4_fv1[56];
   chartInstance->c4_JITTransitionAnimation[0] = 0U;
   _sfTime_ = sf_get_time(chartInstance->S);
-  cudaMemcpyToSymbol(c4_gpu_In, *chartInstance->c4_b_In, 4919040UL, 0UL,
+  cudaMemcpyToSymbol(c4_gpu_In, *chartInstance->c4_b_In, 3686400UL, 0UL,
                      cudaMemcpyHostToDevice);
-  cudaMemcpyToSymbol(c4_gpu_In_1, *chartInstance->c4_In, 4919040UL, 0UL,
+  cudaMemcpyToSymbol(c4_gpu_In_1, *chartInstance->c4_In, 3686400UL, 0UL,
                      cudaMemcpyHostToDevice);
-  c4_sf_gateway_c4_LaneDetection_kernel1<<<dim3(2402U, 1U, 1U), dim3(512U, 1U,
+  c4_sf_gateway_c4_LaneDetection_kernel1<<<dim3(1800U, 1U, 1U), dim3(512U, 1U,
     1U)>>>();
-  cudaMemcpyFromSymbol(*chartInstance->c4_b_In, c4_gpu_In, 4919040UL, 0UL,
+  cudaMemcpyFromSymbol(*chartInstance->c4_b_In, c4_gpu_In, 3686400UL, 0UL,
                        cudaMemcpyDeviceToHost);
   for (c4_i = 0; c4_i < 56; c4_i++) {
     c4_b_fv[c4_i] = (*chartInstance->c4_ltPts)[c4_i];
@@ -741,104 +741,104 @@ static void mdl_terminate_c4_LaneDetection(SFc4_LaneDetectionInstanceStruct
   *chartInstance)
 {
   cudaError_t c4_errCode;
-  cudaFree(chartInstance->c4_gpu_i25);
-  cudaFree(*chartInstance->c4_gpu_idxNewlineChar_data);
-  cudaFree(*chartInstance->c4_gpu_uv4_data);
-  cudaFree(chartInstance->c4_gpu_i5);
-  cudaFree(chartInstance->c4_gpu_k);
   cudaFree(*chartInstance->c4_b_gpu_outsize);
-  cudaFree(*chartInstance->c4_gpu_x_size);
-  cudaFree(*chartInstance->c4_gpu_prevpt);
-  cudaFree(*chartInstance->c4_gpu_I);
-  cudaFree(chartInstance->c4_gpu_i);
-  cudaFree(*chartInstance->c4_gpu_thisCharcodes_1b_data);
-  cudaFree(chartInstance->c4_gpu_bboxes_data);
-  cudaFree(chartInstance->c4_d_gpu_nz);
-  cudaFree(chartInstance->c4_gpu_i8);
-  cudaFree(*chartInstance->c4_gpu_positionOut);
-  cudaFree(*chartInstance->c4_b_gpu_iv1);
-  cudaFree(*chartInstance->c4_gpu_bboxes_size);
-  cudaFree(*chartInstance->c4_gpu_thisCharcodes_1b_size);
-  cudaFree(chartInstance->c4_gpu_i11);
-  cudaFree(chartInstance->c4_gpu_lenFirstSegment);
-  cudaFree(*chartInstance->c4_gpu_ii_size);
-  cudaFree(*chartInstance->c4_gpu_position_data);
-  cudaFree(*chartInstance->c4_gpu_fv1);
-  cudaFree(*chartInstance->c4_gpu_textPosition_data);
-  cudaFree(chartInstance->c4_gpu_i3);
-  cudaFree(*chartInstance->c4_b_gpu_positionOut_data);
-  cudaFree(chartInstance->c4_gpu_q1);
-  cudaFree(chartInstance->c4_c_gpu_vlen);
-  cudaFree(*chartInstance->c4_gpu_x_data);
-  cudaFree(chartInstance->c4_gpu_i14);
-  cudaFree(*chartInstance->c4_gpu_positionOut_data);
-  cudaFree(*chartInstance->c4_gpu_pixCount);
-  cudaFree(*chartInstance->c4_gpu_color);
-  cudaFree(*chartInstance->c4_b_gpu_uv4_data);
-  cudaFree(*chartInstance->c4_gpu_str1);
-  cudaFree(*chartInstance->c4_gpu_rtPts);
-  cudaFree(chartInstance->c4_gpu_i28);
-  cudaFree(*chartInstance->c4_gpu_textPosition_size);
-  cudaFree(*chartInstance->c4_gpu_color_data);
-  cudaFree(chartInstance->c4_gpu_i7);
-  cudaFree(*chartInstance->c4_gpu_uv4);
-  cudaFree(*chartInstance->c4_gpu_cv8);
-  cudaFree(*chartInstance->c4_gpu_thisGlyphCut_float_data);
-  cudaFree(chartInstance->c4_f_gpu_vlen);
-  cudaFree(*chartInstance->c4_b_gpu_color_size);
-  cudaFree(chartInstance->c4_b_gpu_vlen);
-  cudaFree(chartInstance->c4_gpu_thisGlyphIdx_1b);
-  cudaFree(*chartInstance->c4_c_gpu_color_data);
-  cudaFree(*chartInstance->c4_b_gpu_color_data);
-  cudaFree(chartInstance->c4_gpu_i12);
-  cudaFree(*chartInstance->c4_gpu_textLocAndWidth_size);
-  cudaFree(*chartInstance->c4_gpu_ii_data);
-  cudaFree(*chartInstance->c4_gpu_shapeWidth_data);
-  cudaFree(*chartInstance->c4_gpu_uv);
-  cudaFree(*chartInstance->c4_gpu_ltPts);
-  cudaFree(chartInstance->c4_gpu_i1);
-  cudaFree(*chartInstance->c4_gpu_thisTextU16_size);
-  cudaFree(chartInstance->c4_gpu_i15);
-  cudaFree(chartInstance->c4_b_gpu_k);
-  cudaFree(*chartInstance->c4_gpu_position_size);
-  cudaFree(*chartInstance->c4_gpu_color_size);
-  cudaFree(chartInstance->c4_e_gpu_vlen);
-  cudaFree(*chartInstance->c4_gpu_textLocAndWidth_data);
-  cudaFree(*chartInstance->c4_gpu_outsize);
-  cudaFree(chartInstance->c4_gpu_y);
-  cudaFree(chartInstance->c4_d_gpu_vlen);
-  cudaFree(chartInstance->c4_gpu_vlen);
-  cudaFree(*chartInstance->c4_gpu_uv4_size);
-  cudaFree(*chartInstance->c4_gpu_isNewLineChar_size);
-  cudaFree(*chartInstance->c4_gpu_shapeHeight_data);
   cudaFree(chartInstance->c4_g_gpu_vlen);
+  cudaFree(chartInstance->c4_gpu_lenThisSegment);
+  cudaFree(*chartInstance->c4_gpu_textPosition_data);
+  cudaFree(*chartInstance->c4_gpu_pts);
+  cudaFree(chartInstance->c4_gpu_k);
+  cudaFree(*chartInstance->c4_gpu_uv);
+  cudaFree(chartInstance->c4_gpu_i14);
+  cudaFree(*chartInstance->c4_b_gpu_In);
+  cudaFree(chartInstance->c4_gpu_i28);
+  cudaFree(chartInstance->c4_gpu_lenFirstSegment);
+  cudaFree(chartInstance->c4_d_gpu_nz);
+  cudaFree(chartInstance->c4_c_gpu_vlen);
+  cudaFree(*chartInstance->c4_gpu_positionOut);
+  cudaFree(chartInstance->c4_gpu_i25);
+  cudaFree(chartInstance->c4_h_gpu_vlen);
+  cudaFree(*chartInstance->c4_b_gpu_color_data);
+  cudaFree(*chartInstance->c4_gpu_iv1);
+  cudaFree(*chartInstance->c4_gpu_x_size);
+  cudaFree(*chartInstance->c4_gpu_iv);
+  cudaFree(chartInstance->c4_gpu_i34);
+  cudaFree(*chartInstance->c4_gpu_pixCount);
+  cudaFree(chartInstance->c4_b_gpu_k);
+  cudaFree(chartInstance->c4_gpu_i);
+  cudaFree(*chartInstance->c4_gpu_I);
+  cudaFree(*chartInstance->c4_gpu_ltPts);
+  cudaFree(*chartInstance->c4_gpu_prevpt);
+  cudaFree(*chartInstance->c4_gpu_uv4);
+  cudaFree(chartInstance->c4_c_gpu_nz);
+  cudaFree(*chartInstance->c4_gpu_position);
+  cudaFree(*chartInstance->c4_b_gpu_color);
+  cudaFree(*chartInstance->c4_gpu_textPosition_size);
+  cudaFree(chartInstance->c4_gpu_i11);
+  cudaFree(*chartInstance->c4_gpu_position_size);
+  cudaFree(*chartInstance->c4_b_gpu_positionOut_data);
+  cudaFree(*chartInstance->c4_gpu_color_size);
+  cudaFree(*chartInstance->c4_b_gpu_color_size);
+  cudaFree(chartInstance->c4_gpu_y);
+  cudaFree(chartInstance->c4_gpu_lenEndSegment);
+  cudaFree(*chartInstance->c4_gpu_str1);
+  cudaFree(*chartInstance->c4_b_gpu_textLocAndWidth_data);
+  cudaFree(chartInstance->c4_d_gpu_vlen);
+  cudaFree(*chartInstance->c4_gpu_cv7);
+  cudaFree(chartInstance->c4_b_gpu_vlen);
+  cudaFree(chartInstance->c4_gpu_pos);
+  cudaFree(chartInstance->c4_gpu_i10);
+  cudaFree(*chartInstance->c4_gpu_isNewLineChar_data);
+  cudaFree(*chartInstance->c4_gpu_shapeHeight_data);
+  cudaFree(*chartInstance->c4_gpu_outsize);
+  cudaFree(chartInstance->c4_b_gpu_nz);
+  cudaFree(*chartInstance->c4_gpu_position_data);
+  cudaFree(chartInstance->c4_gpu_i3);
+  cudaFree(*chartInstance->c4_gpu_color_data);
+  cudaFree(*chartInstance->c4_gpu_shapeWidth_data);
+  cudaFree(*chartInstance->c4_gpu_fv1);
+  cudaFree(*chartInstance->c4_gpu_cv8);
+  cudaFree(*chartInstance->c4_gpu_textLocAndWidth_data);
+  cudaFree(*chartInstance->c4_gpu_color);
+  cudaFree(chartInstance->c4_gpu_i13);
+  cudaFree(chartInstance->c4_gpu_vlen);
+  cudaFree(chartInstance->c4_gpu_bboxes_data);
+  cudaFree(*chartInstance->c4_gpu_textColor_data);
+  cudaFree(chartInstance->c4_gpu_i8);
+  cudaFree(*chartInstance->c4_gpu_rtPts);
+  cudaFree(chartInstance->c4_gpu_thisGlyphIdx_1b);
+  cudaFree(*chartInstance->c4_gpu_thisCharcodes_1b_data);
+  cudaFree(*chartInstance->c4_gpu_x_data);
+  cudaFree(*chartInstance->c4_gpu_thisGlyphCut_float_size);
+  cudaFree(chartInstance->c4_gpu_q1);
+  cudaFree(*chartInstance->c4_gpu_isNewLineChar_size);
+  cudaFree(chartInstance->c4_gpu_i1);
+  cudaFree(*chartInstance->c4_gpu_positionOut_data);
+  cudaFree(*chartInstance->c4_gpu_idxNewlineChar_data);
+  cudaFree(*chartInstance->c4_b_gpu_iv1);
+  cudaFree(*chartInstance->c4_gpu_thisCharcodes_1b_size);
+  cudaFree(*chartInstance->c4_gpu_thisGlyphCut_float_data);
+  cudaFree(*chartInstance->c4_gpu_ii_data);
+  cudaFree(chartInstance->c4_c_gpu_k);
+  cudaFree(chartInstance->c4_gpu_i12);
+  cudaFree(chartInstance->c4_gpu_outsize_idx_1);
   cudaFree(*chartInstance->c4_gpu_thisTextU16_data);
   cudaFree(chartInstance->c4_gpu_nz);
-  cudaFree(*chartInstance->c4_gpu_cv7);
-  cudaFree(chartInstance->c4_b_gpu_nz);
-  cudaFree(*chartInstance->c4_gpu_isNewLineChar_data);
-  cudaFree(chartInstance->c4_gpu_lenEndSegment);
-  cudaFree(*chartInstance->c4_b_gpu_color);
-  cudaFree(*chartInstance->c4_gpu_iv);
-  cudaFree(chartInstance->c4_gpu_outsize_idx_1);
-  cudaFree(chartInstance->c4_h_gpu_vlen);
-  cudaFree(*chartInstance->c4_gpu_position);
-  cudaFree(chartInstance->c4_gpu_i13);
-  cudaFree(chartInstance->c4_c_gpu_nz);
-  cudaFree(*chartInstance->c4_gpu_textColor_data);
-  cudaFree(chartInstance->c4_gpu_i34);
-  cudaFree(*chartInstance->c4_gpu_thisGlyphCut_float_size);
-  cudaFree(chartInstance->c4_gpu_pos);
-  cudaFree(chartInstance->c4_c_gpu_k);
-  cudaFree(*chartInstance->c4_b_gpu_In);
   cudaFree(chartInstance->c4_gpu_i6);
+  cudaFree(chartInstance->c4_gpu_i5);
+  cudaFree(*chartInstance->c4_gpu_uv4_data);
+  cudaFree(*chartInstance->c4_gpu_thisTextU16_size);
   cudaFree(*chartInstance->c4_b_gpu_textLocAndWidth_size);
-  cudaFree(chartInstance->c4_gpu_lenThisSegment);
-  cudaFree(*chartInstance->c4_gpu_iv1);
-  cudaFree(chartInstance->c4_gpu_i10);
-  cudaFree(*chartInstance->c4_gpu_pts);
+  cudaFree(chartInstance->c4_gpu_i7);
+  cudaFree(*chartInstance->c4_gpu_ii_size);
+  cudaFree(chartInstance->c4_gpu_i15);
   cudaFree(chartInstance->c4_d_gpu_k);
-  cudaFree(*chartInstance->c4_b_gpu_textLocAndWidth_data);
+  cudaFree(*chartInstance->c4_gpu_uv4_size);
+  cudaFree(*chartInstance->c4_gpu_bboxes_size);
+  cudaFree(*chartInstance->c4_b_gpu_uv4_data);
+  cudaFree(*chartInstance->c4_gpu_textLocAndWidth_size);
+  cudaFree(chartInstance->c4_e_gpu_vlen);
+  cudaFree(chartInstance->c4_f_gpu_vlen);
+  cudaFree(*chartInstance->c4_c_gpu_color_data);
   c4_errCode = cudaGetLastError();
   if (c4_errCode != cudaSuccess) {
     emlrtThinCUDAError(c4_errCode, cudaGetErrorName(c4_errCode),
@@ -869,11 +869,11 @@ const mxArray *sf_c4_LaneDetection_get_eml_resolved_functions_info()
 {
   const mxArray *c4_nameCaptureInfo = NULL;
   const char_T *c4_data[4] = {
-    "789c6360f4f465646060e003e2cbf50c0c126c0c60c00ba11804a03413032a409767c441c3002b030b8a3e90fc79a07dfd507e727e5e496a4509849397989b0a"
+    "789c6360f4f465646060e003e299f50c0c126c0c60c00ba11804a03413032a409767c441c3002b030b8a3e90fc14a07dfd507e727e5e496a4509849397989b0a"
     "d799929f9b9997985712525990ca50945a9c9f53969a029649cbcc490dc9cc4d0d46e6f88178b96e4852700e480ac476ce484dce0e2ecd6528ca2846b8300799",
     "030e0f1048c0e15f1602e1810ed0c3035d1dccbe0a32ed83992f4ec03e987c4e625e6a7c596a4666724e6a7c625e5e7e496249667e1ec5fe86d9cb86d31d1099"
     "e2ccbcf49c5484bf6750689f214efb50e5a35d63f533f27353f533729373f41d5d40e9ae283f471f4778e8e542f5110a177e22dd892b7ff0327080e9cdfb59e2",
-    "e9691f0c8c14fb28cd5f6238ec13409337f68b32ab0acd4834aef0764d2dae08724fab2c77f140b82380803d84dcc180834f6bf3019d8d592b",
+    "e9691f0c8c14fb28cd5f6238ec13409337f68b32ab0acd4834aef0764d2dae08724fab2c77f140b82380803d84dcc180834f6bf301e8bc58b6",
     "" };
 
   c4_nameCaptureInfo = NULL;
@@ -882,7 +882,7 @@ const mxArray *sf_c4_LaneDetection_get_eml_resolved_functions_info()
 }
 
 static void c4_emlrt_marshallIn(SFc4_LaneDetectionInstanceStruct *chartInstance,
-  const mxArray *c4_c_In, const char_T *c4_identifier, real32_T c4_y[1229760])
+  const mxArray *c4_c_In, const char_T *c4_identifier, real32_T c4_y[921600])
 {
   emlrtMsgIdentifier c4_thisId;
   c4_thisId.fIdentifier = const_cast<const char_T *>(c4_identifier);
@@ -894,12 +894,12 @@ static void c4_emlrt_marshallIn(SFc4_LaneDetectionInstanceStruct *chartInstance,
 
 static void c4_b_emlrt_marshallIn(SFc4_LaneDetectionInstanceStruct
   *chartInstance, const mxArray *c4_u, const emlrtMsgIdentifier *c4_parentId,
-  real32_T c4_y[1229760])
+  real32_T c4_y[921600])
 {
   int32_T c4_i;
   sf_mex_import(c4_parentId, sf_mex_dup(c4_u), chartInstance->c4_fv, 0, 1, 0U, 1,
-                0U, 3, 480, 854, 3);
-  for (c4_i = 0; c4_i < 1229760; c4_i++) {
+                0U, 3, 480, 640, 3);
+  for (c4_i = 0; c4_i < 921600; c4_i++) {
     c4_y[c4_i] = chartInstance->c4_fv[c4_i];
   }
 
@@ -935,7 +935,7 @@ static uint8_T c4_d_emlrt_marshallIn(SFc4_LaneDetectionInstanceStruct
 static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
   boolean_T c4_b_laneFound, real32_T c4_b_ltPts[56], real32_T c4_b_rtPts[56],
   real_T c4_b_bboxes_data[], int32_T c4_bboxes_size[2], real32_T
-  c4_b_scores_data[], int32_T c4_scores_size[2], real32_T c4_c_In[1229760])
+  c4_b_scores_data[], int32_T c4_scores_size[2], real32_T c4_c_In[921600])
 {
   static int16_T c4_uv3[261] = { 0, 0, 0, 56, 56, 74, 86, 158, 224, 296, 368,
     377, 421, 465, 489, 545, 551, 558, 560, 615, 678, 732, 786, 840, 903, 957,
@@ -2085,7 +2085,7 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
   int8_T c4_outsize[2];
   int8_T c4_outsize_idx_0;
   int8_T c4_outsize_idx_1;
-  uint8_T c4_pixCount[854];
+  uint8_T c4_pixCount[640];
   uint8_T c4_thisTextU16_data[29];
   boolean_T c4_isNewLineChar_data[29];
   boolean_T c4_I_dirtyOnGpu;
@@ -2260,19 +2260,19 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
           c4_b_color_data_dirtyOnCpu = false;
         }
 
-        cudaMemcpy(chartInstance->c4_gpu_color_size, &c4_color_size[0], 8UL,
+        cudaMemcpy(chartInstance->c4_b_gpu_color_size, &c4_color_size[0], 8UL,
                    cudaMemcpyHostToDevice);
         c4_color_size_dirtyOnCpu = false;
         c4_eML_blk_kernel_kernel3<<<c4_b_grid, c4_b_block>>>
           (*chartInstance->c4_c_gpu_color_data,
-           *chartInstance->c4_gpu_color_size,
-           *chartInstance->c4_b_gpu_color_data);
+           *chartInstance->c4_b_gpu_color_size,
+           *chartInstance->c4_gpu_color_data);
       }
     }
 
-    cudaMemcpy(chartInstance->c4_b_gpu_In, (void *)c4_c_In, 4919040UL,
+    cudaMemcpy(chartInstance->c4_b_gpu_In, (void *)c4_c_In, 3686400UL,
                cudaMemcpyHostToDevice);
-    c4_eML_blk_kernel_kernel4<<<dim3(2402U, 1U, 1U), dim3(512U, 1U, 1U)>>>
+    c4_eML_blk_kernel_kernel4<<<dim3(1800U, 1U, 1U), dim3(512U, 1U, 1U)>>>
       (*chartInstance->c4_b_gpu_In, *chartInstance->c4_gpu_I);
     c4_I_dirtyOnGpu = true;
     c4_In_dirtyOnCpu = false;
@@ -2295,15 +2295,14 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
       c4_eML_blk_kernel_kernel6<<<c4_c_grid, c4_c_block>>>
         (*chartInstance->c4_gpu_position_data,
          *chartInstance->c4_gpu_position_size,
-         *chartInstance->c4_b_gpu_positionOut_data);
+         *chartInstance->c4_gpu_positionOut_data);
       c4_positionOut_data_dirtyOnGpu = true;
     }
 
     c4_posPtr = NULL;
     if (c4_positionOut_data_dirtyOnGpu) {
-      cudaMemcpy(&c4_positionOut_data[0],
-                 chartInstance->c4_b_gpu_positionOut_data, 448UL,
-                 cudaMemcpyDeviceToHost);
+      cudaMemcpy(&c4_positionOut_data[0], chartInstance->c4_gpu_positionOut_data,
+                 448UL, cudaMemcpyDeviceToHost);
     }
 
     getPositionDataPointer(&c4_posPtr, &c4_positionOut_data[0], (uint32_T)
@@ -2312,21 +2311,21 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
       (c4_b_color_size[0] * 3 - 1) + 1L), &c4_d_grid, &c4_d_block, 1024U, 65535U);
     if (c4_d_validLaunchParams) {
       if (c4_color_data_dirtyOnCpu) {
-        cudaMemcpy(chartInstance->c4_b_gpu_color_data, &c4_b_color_data[0], 60UL,
+        cudaMemcpy(chartInstance->c4_gpu_color_data, &c4_b_color_data[0], 60UL,
                    cudaMemcpyHostToDevice);
       }
 
-      cudaMemcpy(chartInstance->c4_b_gpu_color_size, &c4_b_color_size[0], 8UL,
+      cudaMemcpy(chartInstance->c4_gpu_color_size, &c4_b_color_size[0], 8UL,
                  cudaMemcpyHostToDevice);
       c4_eML_blk_kernel_kernel7<<<c4_d_grid, c4_d_block>>>
-        (*chartInstance->c4_b_gpu_color_data,
-         *chartInstance->c4_b_gpu_color_size, *chartInstance->c4_gpu_color_data);
+        (*chartInstance->c4_gpu_color_data, *chartInstance->c4_gpu_color_size,
+         *chartInstance->c4_b_gpu_color_data);
       c4_color_data_dirtyOnGpu = true;
     }
 
     c4_colPtr = NULL;
     if (c4_color_data_dirtyOnGpu) {
-      cudaMemcpy(&c4_c_color_data[0], chartInstance->c4_gpu_color_data, 240UL,
+      cudaMemcpy(&c4_c_color_data[0], chartInstance->c4_b_gpu_color_data, 240UL,
                  cudaMemcpyDeviceToHost);
     }
 
@@ -2336,32 +2335,32 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
       c4_isInitialise = initialiseDrawbaseShape(c4_ptrObj, (int16_T)c4_i, 1);
       if (!c4_isInitialise) {
         if (c4_In_dirtyOnGpu) {
-          cudaMemcpy((void *)c4_c_In, chartInstance->c4_b_gpu_In, 4919040UL,
+          cudaMemcpy((void *)c4_c_In, chartInstance->c4_b_gpu_In, 3686400UL,
                      cudaMemcpyDeviceToHost);
           c4_In_dirtyOnGpu = false;
         }
 
         if (c4_I_dirtyOnGpu) {
-          cudaMemcpy(&chartInstance->c4_I[0], chartInstance->c4_gpu_I, 4919040UL,
+          cudaMemcpy(&chartInstance->c4_I[0], chartInstance->c4_gpu_I, 3686400UL,
                      cudaMemcpyDeviceToHost);
           c4_I_dirtyOnGpu = false;
         }
 
         if (c4_pixCount_dirtyOnGpu) {
-          cudaMemcpy(&c4_pixCount[0], chartInstance->c4_gpu_pixCount, 854UL,
+          cudaMemcpy(&c4_pixCount[0], chartInstance->c4_gpu_pixCount, 640UL,
                      cudaMemcpyDeviceToHost);
           c4_pixCount_dirtyOnGpu = false;
         }
 
         instantiateDrawBaseShape_single(c4_ptrObj, &c4_c_In[0],
           &chartInstance->c4_I[0], c4_posPtr, c4_colPtr, 0.6, 1, 1, true, 480,
-          854, 3, 2, c4_dimens1, c4_dimens2, c4_numFillColor, false, c4_bv[c4_i],
+          640, 3, 2, c4_dimens1, c4_dimens2, c4_numFillColor, false, c4_bv[c4_i],
           &c4_pixCount[0], (int16_T)c4_i);
         c4_In_dirtyOnCpu = true;
       }
     }
 
-    mDrawShapes(c4_ptrObj, false, true, 1, 1, 480, 854);
+    mDrawShapes(c4_ptrObj, false, true, 1, 1, 480, 640);
     deallocateMemoryShape(c4_ptrObj);
     deletePositionDataPointer(c4_posPtr);
     deleteColorDataPointer_single(c4_colPtr);
@@ -2384,7 +2383,7 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
         (*chartInstance->c4_gpu_position_data,
          *chartInstance->c4_gpu_position_size,
          *chartInstance->c4_gpu_textLocAndWidth_size, c4_i25,
-         *chartInstance->c4_gpu_textLocAndWidth_data);
+         *chartInstance->c4_b_gpu_textLocAndWidth_data);
     }
 
     c4_i28 = c4_position_size[0] - 1;
@@ -2399,9 +2398,9 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
       }
 
       c4_eML_blk_kernel_kernel9<<<c4_f_grid, c4_f_block>>>
-        (*chartInstance->c4_gpu_textLocAndWidth_data,
+        (*chartInstance->c4_b_gpu_textLocAndWidth_data,
          *chartInstance->c4_gpu_textLocAndWidth_size, c4_i28,
-         *chartInstance->c4_b_gpu_textLocAndWidth_data);
+         *chartInstance->c4_gpu_textLocAndWidth_data);
     }
 
     c4_g_validLaunchParams = mwGetLaunchParameters((real_T)((int64_T)
@@ -2417,10 +2416,10 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
       cudaMemcpy(chartInstance->c4_b_gpu_textLocAndWidth_size,
                  &c4_b_textLocAndWidth_size[0], 4UL, cudaMemcpyHostToDevice);
       c4_eML_blk_kernel_kernel10<<<c4_g_grid, c4_g_block>>>
-        (*chartInstance->c4_b_gpu_textLocAndWidth_data,
+        (*chartInstance->c4_gpu_textLocAndWidth_data,
          *chartInstance->c4_gpu_textLocAndWidth_size,
          *chartInstance->c4_b_gpu_textLocAndWidth_size,
-         *chartInstance->c4_gpu_textLocAndWidth_data);
+         *chartInstance->c4_b_gpu_textLocAndWidth_data);
     }
 
     c4_i34 = c4_textLocAndWidth_size[0] - 1;
@@ -2438,7 +2437,7 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
       cudaMemcpy(chartInstance->c4_gpu_textPosition_size, &c4_textPosition_size
                  [0], 8UL, cudaMemcpyHostToDevice);
       c4_eML_blk_kernel_kernel11<<<c4_h_grid, c4_h_block>>>
-        (*chartInstance->c4_gpu_textLocAndWidth_data,
+        (*chartInstance->c4_b_gpu_textLocAndWidth_data,
          *chartInstance->c4_gpu_textLocAndWidth_size,
          *chartInstance->c4_gpu_textPosition_size, c4_i34,
          *chartInstance->c4_gpu_textPosition_data);
@@ -2467,13 +2466,13 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
         }
 
         if (c4_color_size_dirtyOnCpu) {
-          cudaMemcpy(chartInstance->c4_gpu_color_size, &c4_color_size[0], 8UL,
+          cudaMemcpy(chartInstance->c4_b_gpu_color_size, &c4_color_size[0], 8UL,
                      cudaMemcpyHostToDevice);
         }
 
         c4_eML_blk_kernel_kernel12<<<c4_i_grid, c4_i_block>>>
           (*chartInstance->c4_c_gpu_color_data,
-           *chartInstance->c4_gpu_color_size,
+           *chartInstance->c4_b_gpu_color_size,
            *chartInstance->c4_gpu_textColor_data);
         c4_textColor_data_dirtyOnGpu = true;
       }
@@ -2481,7 +2480,7 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
 
     if (c4_textLocAndWidth_size[0] == 1) {
       c4_eML_blk_kernel_kernel14<<<dim3(1U, 1U, 1U), dim3(32U, 1U, 1U)>>>
-        (*chartInstance->c4_gpu_textLocAndWidth_data,
+        (*chartInstance->c4_b_gpu_textLocAndWidth_data,
          *chartInstance->c4_gpu_shapeWidth_data);
       c4_shapeWidth_data_dirtyOnGpu = true;
     } else {
@@ -2498,7 +2497,7 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
         cudaMemcpy(chartInstance->c4_gpu_iv, &c4_iv[0], 8UL,
                    cudaMemcpyHostToDevice);
         c4_eML_blk_kernel_kernel13<<<c4_j_grid, c4_j_block>>>
-          (*chartInstance->c4_gpu_textLocAndWidth_data,
+          (*chartInstance->c4_b_gpu_textLocAndWidth_data,
            *chartInstance->c4_gpu_textLocAndWidth_size,
            *chartInstance->c4_gpu_iv, *chartInstance->c4_gpu_shapeWidth_data);
         c4_shapeWidth_data_dirtyOnGpu = true;
@@ -2507,7 +2506,7 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
 
     if (c4_textLocAndWidth_size[0] == 1) {
       c4_eML_blk_kernel_kernel16<<<dim3(1U, 1U, 1U), dim3(32U, 1U, 1U)>>>
-        (*chartInstance->c4_gpu_textLocAndWidth_data,
+        (*chartInstance->c4_b_gpu_textLocAndWidth_data,
          *chartInstance->c4_gpu_shapeHeight_data);
       c4_shapeHeight_data_dirtyOnGpu = true;
     } else {
@@ -2523,7 +2522,7 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
         cudaMemcpy(chartInstance->c4_b_gpu_iv1, &c4_iv1[0], 8UL,
                    cudaMemcpyHostToDevice);
         c4_eML_blk_kernel_kernel15<<<c4_k_grid, c4_k_block>>>
-          (*chartInstance->c4_gpu_textLocAndWidth_data,
+          (*chartInstance->c4_b_gpu_textLocAndWidth_data,
            *chartInstance->c4_gpu_textLocAndWidth_size,
            *chartInstance->c4_b_gpu_iv1, *chartInstance->c4_gpu_shapeHeight_data);
         c4_shapeHeight_data_dirtyOnGpu = true;
@@ -2921,14 +2920,14 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
             c4_c_nz_dirtyOnCpu = true;
           } else {
             if (c4_c_nz_dirtyOnCpu) {
-              cudaMemcpy(chartInstance->c4_d_gpu_nz, &c4_nz, 4UL,
+              cudaMemcpy(chartInstance->c4_c_gpu_nz, &c4_nz, 4UL,
                          cudaMemcpyHostToDevice);
               c4_c_nz_dirtyOnCpu = false;
             }
 
             c4_eML_blk_kernel_kernel27<<<dim3(1U, 1U, 1U), dim3(32U, 1U, 1U)>>>(*
               chartInstance->c4_gpu_isNewLineChar_data,
-              chartInstance->c4_d_gpu_nz);
+              chartInstance->c4_c_gpu_nz);
             c4_nz_dirtyOnGpu = true;
             c4_x_validLaunchParams = mwGetLaunchParameters((real_T)((int64_T)
               (c4_c_vlen - 2) + 1L), &c4_x_grid, &c4_x_block, 1024U, 65535U);
@@ -2938,7 +2937,7 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
               c4_eML_blk_kernel_kernel28<<<c4_x_grid, c4_x_block>>>
                 (*chartInstance->c4_gpu_isNewLineChar_size,
                  *chartInstance->c4_gpu_isNewLineChar_data, c4_c_vlen,
-                 chartInstance->c4_d_gpu_nz);
+                 chartInstance->c4_c_gpu_nz);
             }
           }
 
@@ -3067,14 +3066,14 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
               c4_b_nz_dirtyOnCpu = true;
             } else {
               if (c4_b_nz_dirtyOnCpu) {
-                cudaMemcpy(chartInstance->c4_b_gpu_nz, &c4_d_nz, 4UL,
+                cudaMemcpy(chartInstance->c4_d_gpu_nz, &c4_d_nz, 4UL,
                            cudaMemcpyHostToDevice);
                 c4_b_nz_dirtyOnCpu = false;
               }
 
               c4_eML_blk_kernel_kernel34<<<dim3(1U, 1U, 1U), dim3(32U, 1U, 1U)>>>
                 (*chartInstance->c4_gpu_isNewLineChar_data,
-                 chartInstance->c4_b_gpu_nz);
+                 chartInstance->c4_d_gpu_nz);
               c4_hb_validLaunchParams = mwGetLaunchParameters((real_T)((int64_T)
                 (c4_g_vlen - 2) + 1L), &c4_hb_grid, &c4_hb_block, 1024U, 65535U);
               if (c4_hb_validLaunchParams) {
@@ -3084,10 +3083,10 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
                 c4_eML_blk_kernel_kernel35<<<c4_hb_grid, c4_hb_block>>>
                   (*chartInstance->c4_gpu_isNewLineChar_size,
                    *chartInstance->c4_gpu_isNewLineChar_data, c4_g_vlen,
-                   chartInstance->c4_b_gpu_nz);
+                   chartInstance->c4_d_gpu_nz);
               }
 
-              cudaMemcpy(&c4_d_nz, chartInstance->c4_b_gpu_nz, 4UL,
+              cudaMemcpy(&c4_d_nz, chartInstance->c4_d_gpu_nz, 4UL,
                          cudaMemcpyDeviceToHost);
             }
 
@@ -3242,14 +3241,14 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
             c4_nz_dirtyOnCpu = true;
           } else {
             if (c4_nz_dirtyOnCpu) {
-              cudaMemcpy(chartInstance->c4_c_gpu_nz, &c4_c_nz, 4UL,
+              cudaMemcpy(chartInstance->c4_b_gpu_nz, &c4_c_nz, 4UL,
                          cudaMemcpyHostToDevice);
               c4_nz_dirtyOnCpu = false;
             }
 
             c4_eML_blk_kernel_kernel41<<<dim3(1U, 1U, 1U), dim3(32U, 1U, 1U)>>>(*
               chartInstance->c4_gpu_isNewLineChar_data,
-              chartInstance->c4_c_gpu_nz);
+              chartInstance->c4_b_gpu_nz);
             c4_b_nz_dirtyOnGpu = true;
             c4_ib_validLaunchParams = mwGetLaunchParameters((real_T)((int64_T)
               (c4_f_vlen - 2) + 1L), &c4_ib_grid, &c4_ib_block, 1024U, 65535U);
@@ -3259,12 +3258,12 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
               c4_eML_blk_kernel_kernel42<<<c4_ib_grid, c4_ib_block>>>
                 (*chartInstance->c4_gpu_isNewLineChar_size,
                  *chartInstance->c4_gpu_isNewLineChar_data, c4_f_vlen,
-                 chartInstance->c4_c_gpu_nz);
+                 chartInstance->c4_b_gpu_nz);
             }
           }
 
           if (c4_nz_dirtyOnGpu) {
-            cudaMemcpy(&c4_nz, chartInstance->c4_d_gpu_nz, 4UL,
+            cudaMemcpy(&c4_nz, chartInstance->c4_c_gpu_nz, 4UL,
                        cudaMemcpyDeviceToHost);
           }
 
@@ -3295,7 +3294,7 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
           c4_varargin_1[0] = c4_i91;
           c4_varargin_1[1] = c4_maxLen;
           if (c4_b_nz_dirtyOnGpu) {
-            cudaMemcpy(&c4_c_nz, chartInstance->c4_c_gpu_nz, 4UL,
+            cudaMemcpy(&c4_c_nz, chartInstance->c4_b_gpu_nz, 4UL,
                        cudaMemcpyDeviceToHost);
           }
 
@@ -3390,7 +3389,7 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
             }
 
             c4_guard1 = false;
-            if (c4_textPosition_data[c4_ii] <= 854) {
+            if (c4_textPosition_data[c4_ii] <= 640) {
               c4_b_q0 = c4_textPosition_data[c4_ii];
               c4_q1 = c4_shapeWidth_data[c4_ii];
               if ((c4_b_q0 < 0) && (c4_q1 < MIN_int32_T - c4_b_q0)) {
@@ -3469,13 +3468,13 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
                     c4_o_qY = c4_d_q0 + c4_b_tbWidth;
                   }
 
-                  if ((real_T)c4_o_qY - 854.0 >= -2.147483648E+9) {
-                    c4_i102 = c4_o_qY - 854;
+                  if ((real_T)c4_o_qY - 640.0 >= -2.147483648E+9) {
+                    c4_i102 = c4_o_qY - 640;
                   } else {
                     c4_i102 = MIN_int32_T;
                   }
 
-                  if ((c4_i102 > 0) && (c4_textPosition_data[c4_ii] <= 854)) {
+                  if ((c4_i102 > 0) && (c4_textPosition_data[c4_ii] <= 640)) {
                     c4_f_q0 = c4_textPosition_data[c4_ii];
                     if ((c4_f_q0 >= 0) && (c4_i102 < c4_f_q0 - MAX_int32_T)) {
                       c4_s_qY = MAX_int32_T;
@@ -3552,7 +3551,7 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
         }
 
         c4_endC = c4_g_qY;
-        if ((c4_tbTopLeftY > 480) || (c4_d_qY - 1 < 1) || (c4_tbTopLeftX > 854) ||
+        if ((c4_tbTopLeftY > 480) || (c4_d_qY - 1 < 1) || (c4_tbTopLeftX > 640) ||
             (c4_g_qY < 1)) {
         } else {
           if (c4_tbTopLeftY < 1) {
@@ -3567,8 +3566,8 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
             c4_startC = 1;
           }
 
-          if (c4_g_qY > 854) {
-            c4_endC = 854;
+          if (c4_g_qY > 640) {
+            c4_endC = 640;
           }
 
           for (c4_i_i = 0; c4_i_i < 3; c4_i_i++) {
@@ -3587,13 +3586,13 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
                                       c4_textColor_size[0] * c4_i_i]);
                 if (c4_In_dirtyOnGpu) {
                   cudaMemcpy((void *)c4_c_In, chartInstance->c4_b_gpu_In,
-                             4919040UL, cudaMemcpyDeviceToHost);
+                             3686400UL, cudaMemcpyDeviceToHost);
                   c4_In_dirtyOnGpu = false;
                 }
 
                 c4_tmp22 = (real32_T)(0.4 * (real_T)c4_c_In[(c4_b_r + 480 *
-                  c4_b_c) + 409920 * c4_i_i]);
-                c4_c_In[(c4_b_r + 480 * c4_b_c) + 409920 * c4_i_i] = c4_tmp11 +
+                  c4_b_c) + 307200 * c4_i_i]);
+                c4_c_In[(c4_b_r + 480 * c4_b_c) + 307200 * c4_i_i] = c4_tmp11 +
                   c4_tmp22;
                 c4_In_dirtyOnCpu = true;
               }
@@ -3710,7 +3709,7 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
               }
 
               c4_endC_im = c4_y_qY - 1;
-              if ((c4_yy > 480) || (c4_x_qY - 1 < 1) || (c4_w_qY > 854) ||
+              if ((c4_yy > 480) || (c4_x_qY - 1 < 1) || (c4_w_qY > 640) ||
                   (c4_y_qY - 1 < 1)) {
               } else {
                 c4_startR_gl = 1;
@@ -3739,10 +3738,10 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
                   c4_startC_im = 1;
                 }
 
-                if (c4_y_qY - 1 > 854) {
+                if (c4_y_qY - 1 > 640) {
                   c4_endC_gl = (c4_uv2[c4_uv[c4_thisTextU16_data[c4_j_i]]] -
-                                c4_y_qY) + 855;
-                  c4_endC_im = 854;
+                                c4_y_qY) + 641;
+                  c4_endC_im = 640;
                 }
 
                 c4_bitmapEndIdx_1b = (int32_T)((uint32_T)
@@ -3852,24 +3851,24 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
                       if (c4_glyphVal == 1.0) {
                         if (c4_In_dirtyOnGpu) {
                           cudaMemcpy((void *)c4_c_In, chartInstance->c4_b_gpu_In,
-                                     4919040UL, cudaMemcpyDeviceToHost);
+                                     3686400UL, cudaMemcpyDeviceToHost);
                           c4_In_dirtyOnGpu = false;
                         }
 
-                        c4_c_In[(c4_d_r + 480 * c4_d_c) + 409920 * c4_b_idx] =
+                        c4_c_In[(c4_d_r + 480 * c4_d_c) + 307200 * c4_b_idx] =
                           0.0F;
                         c4_In_dirtyOnCpu = true;
                       } else {
                         if (c4_glyphVal != 0.0) {
                           if (c4_In_dirtyOnGpu) {
                             cudaMemcpy((void *)c4_c_In,
-                                       chartInstance->c4_b_gpu_In, 4919040UL,
+                                       chartInstance->c4_b_gpu_In, 3686400UL,
                                        cudaMemcpyDeviceToHost);
                             c4_In_dirtyOnGpu = false;
                           }
 
-                          c4_c_In[(c4_d_r + 480 * c4_d_c) + 409920 * c4_b_idx] +=
-                            (0.0F - c4_c_In[(c4_d_r + 480 * c4_d_c) + 409920 *
+                          c4_c_In[(c4_d_r + 480 * c4_d_c) + 307200 * c4_b_idx] +=
+                            (0.0F - c4_c_In[(c4_d_r + 480 * c4_d_c) + 307200 *
                              c4_b_idx]) * (real32_T)c4_glyphVal;
                           c4_In_dirtyOnCpu = true;
                         }
@@ -4055,15 +4054,15 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
     c4_eML_blk_kernel_kernel114<<<dim3(1U, 1U, 1U), dim3(32U, 1U, 1U)>>>
       (*chartInstance->c4_gpu_positionOut, chartInstance->c4_gpu_pos);
     c4_eML_blk_kernel_kernel115<<<dim3(1U, 1U, 1U), dim3(32U, 1U, 1U)>>>
-      (chartInstance->c4_gpu_pos, *chartInstance->c4_gpu_positionOut_data);
+      (chartInstance->c4_gpu_pos, *chartInstance->c4_b_gpu_positionOut_data);
     c4_b_positionOut_data_dirtyOnGpu = true;
     if (c4_In_dirtyOnCpu) {
-      cudaMemcpy(chartInstance->c4_b_gpu_In, (void *)c4_c_In, 4919040UL,
+      cudaMemcpy(chartInstance->c4_b_gpu_In, (void *)c4_c_In, 3686400UL,
                  cudaMemcpyHostToDevice);
       c4_In_dirtyOnCpu = false;
     }
 
-    c4_eML_blk_kernel_kernel116<<<dim3(2402U, 1U, 1U), dim3(512U, 1U, 1U)>>>
+    c4_eML_blk_kernel_kernel116<<<dim3(1800U, 1U, 1U), dim3(512U, 1U, 1U)>>>
       (*chartInstance->c4_b_gpu_In, *chartInstance->c4_gpu_I);
     c4_I_dirtyOnGpu = true;
     c4_In_dirtyOnGpu = true;
@@ -4073,19 +4072,19 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
     c4_b_ptrObj = NULL;
     constructDrawBaseObjectShape(&c4_b_ptrObj);
     c4_eML_blk_kernel_kernel118<<<dim3(1U, 1U, 1U), dim3(128U, 1U, 1U)>>>
-      (*chartInstance->c4_gpu_positionOut_data,
-       *chartInstance->c4_b_gpu_positionOut_data);
+      (*chartInstance->c4_b_gpu_positionOut_data,
+       *chartInstance->c4_gpu_positionOut_data);
     c4_b_posPtr = NULL;
-    cudaMemcpy(&c4_positionOut_data[0], chartInstance->c4_b_gpu_positionOut_data,
+    cudaMemcpy(&c4_positionOut_data[0], chartInstance->c4_gpu_positionOut_data,
                448UL, cudaMemcpyDeviceToHost);
     getPositionDataPointer(&c4_b_posPtr, &c4_positionOut_data[0], 28U, 4U);
-    cudaMemcpy(chartInstance->c4_b_gpu_color, &c4_color[0], 84UL,
+    cudaMemcpy(chartInstance->c4_gpu_color, &c4_color[0], 84UL,
                cudaMemcpyHostToDevice);
     c4_color_dirtyOnCpu = false;
     c4_eML_blk_kernel_kernel119<<<dim3(1U, 1U, 1U), dim3(96U, 1U, 1U)>>>
-      (*chartInstance->c4_b_gpu_color, *chartInstance->c4_gpu_color);
+      (*chartInstance->c4_gpu_color, *chartInstance->c4_b_gpu_color);
     c4_b_colPtr = NULL;
-    cudaMemcpy(&c4_b_color[0], chartInstance->c4_gpu_color, 336UL,
+    cudaMemcpy(&c4_b_color[0], chartInstance->c4_b_gpu_color, 336UL,
                cudaMemcpyDeviceToHost);
     getColorDataPointer_single(&c4_b_colPtr, &c4_b_color[0], 28U, 3U);
     for (c4_b_i = 0; c4_b_i < 2; c4_b_i++) {
@@ -4093,32 +4092,32 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
         2);
       if (!c4_b_isInitialise) {
         if (c4_In_dirtyOnGpu) {
-          cudaMemcpy((void *)c4_c_In, chartInstance->c4_b_gpu_In, 4919040UL,
+          cudaMemcpy((void *)c4_c_In, chartInstance->c4_b_gpu_In, 3686400UL,
                      cudaMemcpyDeviceToHost);
           c4_In_dirtyOnGpu = false;
         }
 
         if (c4_I_dirtyOnGpu) {
-          cudaMemcpy(&chartInstance->c4_I[0], chartInstance->c4_gpu_I, 4919040UL,
+          cudaMemcpy(&chartInstance->c4_I[0], chartInstance->c4_gpu_I, 3686400UL,
                      cudaMemcpyDeviceToHost);
           c4_I_dirtyOnGpu = false;
         }
 
         if (c4_pixCount_dirtyOnGpu) {
-          cudaMemcpy(&c4_pixCount[0], chartInstance->c4_gpu_pixCount, 854UL,
+          cudaMemcpy(&c4_pixCount[0], chartInstance->c4_gpu_pixCount, 640UL,
                      cudaMemcpyDeviceToHost);
           c4_pixCount_dirtyOnGpu = false;
         }
 
         instantiateDrawBaseShape_single(c4_b_ptrObj, &c4_c_In[0],
           &chartInstance->c4_I[0], c4_b_posPtr, c4_b_colPtr, 0.6, 2, 2, true,
-          480, 854, 3, 2, 28, 4, 28, false, c4_bv[c4_b_i], &c4_pixCount[0],
+          480, 640, 3, 2, 28, 4, 28, false, c4_bv[c4_b_i], &c4_pixCount[0],
           (int16_T)c4_b_i);
         c4_In_dirtyOnCpu = true;
       }
     }
 
-    mDrawShapes(c4_b_ptrObj, false, true, 2, 2, 480, 854);
+    mDrawShapes(c4_b_ptrObj, false, true, 2, 2, 480, 640);
     deallocateMemoryShape(c4_b_ptrObj);
     deletePositionDataPointer(c4_b_posPtr);
     deleteColorDataPointer_single(c4_b_colPtr);
@@ -4260,7 +4259,7 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
     for (c4_i127 = 0; c4_i127 < 112; c4_i127++) {
       if (c4_b_positionOut_data_dirtyOnGpu) {
         cudaMemcpy(&c4_b_positionOut_data[0],
-                   chartInstance->c4_gpu_positionOut_data, 448UL,
+                   chartInstance->c4_b_gpu_positionOut_data, 448UL,
                    cudaMemcpyDeviceToHost);
       }
 
@@ -4269,14 +4268,14 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
     }
 
     c4_eML_blk_kernel_kernel178<<<dim3(1U, 1U, 1U), dim3(32U, 1U, 1U)>>>
-      (chartInstance->c4_gpu_pos, *chartInstance->c4_gpu_positionOut_data);
+      (chartInstance->c4_gpu_pos, *chartInstance->c4_b_gpu_positionOut_data);
     if (c4_In_dirtyOnCpu) {
-      cudaMemcpy(chartInstance->c4_b_gpu_In, (void *)c4_c_In, 4919040UL,
+      cudaMemcpy(chartInstance->c4_b_gpu_In, (void *)c4_c_In, 3686400UL,
                  cudaMemcpyHostToDevice);
       c4_In_dirtyOnCpu = false;
     }
 
-    c4_eML_blk_kernel_kernel179<<<dim3(2402U, 1U, 1U), dim3(512U, 1U, 1U)>>>
+    c4_eML_blk_kernel_kernel179<<<dim3(1800U, 1U, 1U), dim3(512U, 1U, 1U)>>>
       (*chartInstance->c4_b_gpu_In, *chartInstance->c4_gpu_I);
     c4_I_dirtyOnGpu = true;
     c4_In_dirtyOnGpu = true;
@@ -4286,21 +4285,21 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
     c4_c_ptrObj = NULL;
     constructDrawBaseObjectShape(&c4_c_ptrObj);
     c4_eML_blk_kernel_kernel181<<<dim3(1U, 1U, 1U), dim3(128U, 1U, 1U)>>>
-      (*chartInstance->c4_gpu_positionOut_data,
-       *chartInstance->c4_b_gpu_positionOut_data);
+      (*chartInstance->c4_b_gpu_positionOut_data,
+       *chartInstance->c4_gpu_positionOut_data);
     c4_c_posPtr = NULL;
-    cudaMemcpy(&c4_positionOut_data[0], chartInstance->c4_b_gpu_positionOut_data,
+    cudaMemcpy(&c4_positionOut_data[0], chartInstance->c4_gpu_positionOut_data,
                448UL, cudaMemcpyDeviceToHost);
     getPositionDataPointer(&c4_c_posPtr, &c4_positionOut_data[0], 28U, 4U);
     if (c4_color_dirtyOnCpu) {
-      cudaMemcpy(chartInstance->c4_b_gpu_color, &c4_color[0], 84UL,
+      cudaMemcpy(chartInstance->c4_gpu_color, &c4_color[0], 84UL,
                  cudaMemcpyHostToDevice);
     }
 
     c4_eML_blk_kernel_kernel182<<<dim3(1U, 1U, 1U), dim3(96U, 1U, 1U)>>>
-      (*chartInstance->c4_b_gpu_color, *chartInstance->c4_gpu_color);
+      (*chartInstance->c4_gpu_color, *chartInstance->c4_b_gpu_color);
     c4_c_colPtr = NULL;
-    cudaMemcpy(&c4_b_color[0], chartInstance->c4_gpu_color, 336UL,
+    cudaMemcpy(&c4_b_color[0], chartInstance->c4_b_gpu_color, 336UL,
                cudaMemcpyDeviceToHost);
     getColorDataPointer_single(&c4_c_colPtr, &c4_b_color[0], 28U, 3U);
     for (c4_f_i = 0; c4_f_i < 2; c4_f_i++) {
@@ -4308,42 +4307,42 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
         2);
       if (!c4_c_isInitialise) {
         if (c4_In_dirtyOnGpu) {
-          cudaMemcpy((void *)c4_c_In, chartInstance->c4_b_gpu_In, 4919040UL,
+          cudaMemcpy((void *)c4_c_In, chartInstance->c4_b_gpu_In, 3686400UL,
                      cudaMemcpyDeviceToHost);
           c4_In_dirtyOnGpu = false;
         }
 
         if (c4_I_dirtyOnGpu) {
-          cudaMemcpy(&chartInstance->c4_I[0], chartInstance->c4_gpu_I, 4919040UL,
+          cudaMemcpy(&chartInstance->c4_I[0], chartInstance->c4_gpu_I, 3686400UL,
                      cudaMemcpyDeviceToHost);
           c4_I_dirtyOnGpu = false;
         }
 
         if (c4_pixCount_dirtyOnGpu) {
-          cudaMemcpy(&c4_pixCount[0], chartInstance->c4_gpu_pixCount, 854UL,
+          cudaMemcpy(&c4_pixCount[0], chartInstance->c4_gpu_pixCount, 640UL,
                      cudaMemcpyDeviceToHost);
           c4_pixCount_dirtyOnGpu = false;
         }
 
         instantiateDrawBaseShape_single(c4_c_ptrObj, &c4_c_In[0],
           &chartInstance->c4_I[0], c4_c_posPtr, c4_c_colPtr, 0.6, 2, 2, true,
-          480, 854, 3, 2, 28, 4, 28, false, c4_bv[c4_f_i], &c4_pixCount[0],
+          480, 640, 3, 2, 28, 4, 28, false, c4_bv[c4_f_i], &c4_pixCount[0],
           (int16_T)c4_f_i);
         c4_In_dirtyOnCpu = true;
       }
     }
 
-    mDrawShapes(c4_c_ptrObj, false, true, 2, 2, 480, 854);
+    mDrawShapes(c4_c_ptrObj, false, true, 2, 2, 480, 640);
     deallocateMemoryShape(c4_c_ptrObj);
     deletePositionDataPointer(c4_c_posPtr);
     deleteColorDataPointer_single(c4_c_colPtr);
     if (c4_In_dirtyOnCpu) {
-      cudaMemcpy(chartInstance->c4_b_gpu_In, (void *)c4_c_In, 4919040UL,
+      cudaMemcpy(chartInstance->c4_b_gpu_In, (void *)c4_c_In, 3686400UL,
                  cudaMemcpyHostToDevice);
       c4_In_dirtyOnCpu = false;
     }
 
-    c4_eML_blk_kernel_kernel183<<<dim3(2402U, 1U, 1U), dim3(512U, 1U, 1U)>>>
+    c4_eML_blk_kernel_kernel183<<<dim3(1800U, 1U, 1U), dim3(512U, 1U, 1U)>>>
       (*chartInstance->c4_b_gpu_In, *chartInstance->c4_gpu_I);
     c4_I_dirtyOnGpu = true;
     if (c4_ltPts_dirtyOnCpu) {
@@ -4358,7 +4357,7 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
                cudaMemcpyHostToDevice);
     c4_fv1_dirtyOnCpu = false;
     c4_eML_blk_kernel_kernel185<<<dim3(1U, 1U, 1U), dim3(96U, 1U, 1U)>>>
-      (*chartInstance->c4_gpu_fv1, *chartInstance->c4_gpu_color);
+      (*chartInstance->c4_gpu_fv1, *chartInstance->c4_b_gpu_color);
     c4_color_dirtyOnGpu = true;
     c4_eML_blk_kernel_kernel186<<<dim3(2U, 1U, 1U), dim3(512U, 1U, 1U)>>>
       (*chartInstance->c4_gpu_pixCount);
@@ -4369,25 +4368,25 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
       c4_d_isInitialise = initialiseDrawbaseMarker(c4_d_ptrObj, (int16_T)c4_g_i);
       if (!c4_d_isInitialise) {
         if (c4_In_dirtyOnGpu) {
-          cudaMemcpy((void *)c4_c_In, chartInstance->c4_b_gpu_In, 4919040UL,
+          cudaMemcpy((void *)c4_c_In, chartInstance->c4_b_gpu_In, 3686400UL,
                      cudaMemcpyDeviceToHost);
           c4_In_dirtyOnGpu = false;
         }
 
         if (c4_I_dirtyOnGpu) {
-          cudaMemcpy(&chartInstance->c4_I[0], chartInstance->c4_gpu_I, 4919040UL,
+          cudaMemcpy(&chartInstance->c4_I[0], chartInstance->c4_gpu_I, 3686400UL,
                      cudaMemcpyDeviceToHost);
           c4_I_dirtyOnGpu = false;
         }
 
         if (c4_pixCount_dirtyOnGpu) {
-          cudaMemcpy(&c4_pixCount[0], chartInstance->c4_gpu_pixCount, 854UL,
+          cudaMemcpy(&c4_pixCount[0], chartInstance->c4_gpu_pixCount, 640UL,
                      cudaMemcpyDeviceToHost);
           c4_pixCount_dirtyOnGpu = false;
         }
 
         if (c4_color_dirtyOnGpu) {
-          cudaMemcpy(&c4_b_color[0], chartInstance->c4_gpu_color, 336UL,
+          cudaMemcpy(&c4_b_color[0], chartInstance->c4_b_gpu_color, 336UL,
                      cudaMemcpyDeviceToHost);
           c4_color_dirtyOnGpu = false;
         }
@@ -4400,18 +4399,18 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
 
         instantiateDrawBaseMarker_single(c4_d_ptrObj, &c4_c_In[0],
           &chartInstance->c4_I[0], &c4_position[0], &c4_b_color[0], 0.6, 3, 3,
-          480, 854, 3, 2, 28, 2, 28, &c4_pixCount[0], (int16_T)c4_g_i);
+          480, 640, 3, 2, 28, 2, 28, &c4_pixCount[0], (int16_T)c4_g_i);
         c4_In_dirtyOnCpu = true;
       }
     }
 
     deallocateMemoryMarker(c4_d_ptrObj);
     if (c4_In_dirtyOnCpu) {
-      cudaMemcpy(chartInstance->c4_b_gpu_In, (void *)c4_c_In, 4919040UL,
+      cudaMemcpy(chartInstance->c4_b_gpu_In, (void *)c4_c_In, 3686400UL,
                  cudaMemcpyHostToDevice);
     }
 
-    c4_eML_blk_kernel_kernel187<<<dim3(2402U, 1U, 1U), dim3(512U, 1U, 1U)>>>
+    c4_eML_blk_kernel_kernel187<<<dim3(1800U, 1U, 1U), dim3(512U, 1U, 1U)>>>
       (*chartInstance->c4_b_gpu_In, *chartInstance->c4_gpu_I);
     c4_I_dirtyOnGpu = true;
     if (c4_rtPts_dirtyOnCpu) {
@@ -4428,7 +4427,7 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
     }
 
     c4_eML_blk_kernel_kernel189<<<dim3(1U, 1U, 1U), dim3(96U, 1U, 1U)>>>
-      (*chartInstance->c4_gpu_fv1, *chartInstance->c4_gpu_color);
+      (*chartInstance->c4_gpu_fv1, *chartInstance->c4_b_gpu_color);
     c4_color_dirtyOnGpu = true;
     c4_eML_blk_kernel_kernel190<<<dim3(2U, 1U, 1U), dim3(512U, 1U, 1U)>>>
       (*chartInstance->c4_gpu_pixCount);
@@ -4439,25 +4438,25 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
       c4_e_isInitialise = initialiseDrawbaseMarker(c4_e_ptrObj, (int16_T)c4_h_i);
       if (!c4_e_isInitialise) {
         if (c4_In_dirtyOnGpu) {
-          cudaMemcpy((void *)c4_c_In, chartInstance->c4_b_gpu_In, 4919040UL,
+          cudaMemcpy((void *)c4_c_In, chartInstance->c4_b_gpu_In, 3686400UL,
                      cudaMemcpyDeviceToHost);
           c4_In_dirtyOnGpu = false;
         }
 
         if (c4_I_dirtyOnGpu) {
-          cudaMemcpy(&chartInstance->c4_I[0], chartInstance->c4_gpu_I, 4919040UL,
+          cudaMemcpy(&chartInstance->c4_I[0], chartInstance->c4_gpu_I, 3686400UL,
                      cudaMemcpyDeviceToHost);
           c4_I_dirtyOnGpu = false;
         }
 
         if (c4_pixCount_dirtyOnGpu) {
-          cudaMemcpy(&c4_pixCount[0], chartInstance->c4_gpu_pixCount, 854UL,
+          cudaMemcpy(&c4_pixCount[0], chartInstance->c4_gpu_pixCount, 640UL,
                      cudaMemcpyDeviceToHost);
           c4_pixCount_dirtyOnGpu = false;
         }
 
         if (c4_color_dirtyOnGpu) {
-          cudaMemcpy(&c4_b_color[0], chartInstance->c4_gpu_color, 336UL,
+          cudaMemcpy(&c4_b_color[0], chartInstance->c4_b_gpu_color, 336UL,
                      cudaMemcpyDeviceToHost);
           c4_color_dirtyOnGpu = false;
         }
@@ -4470,7 +4469,7 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
 
         instantiateDrawBaseMarker_single(c4_e_ptrObj, &c4_c_In[0],
           &chartInstance->c4_I[0], &c4_position[0], &c4_b_color[0], 0.6, 3, 3,
-          480, 854, 3, 2, 28, 2, 28, &c4_pixCount[0], (int16_T)c4_h_i);
+          480, 640, 3, 2, 28, 2, 28, &c4_pixCount[0], (int16_T)c4_h_i);
       }
     }
 
@@ -4478,7 +4477,7 @@ static void c4_eML_blk_kernel(SFc4_LaneDetectionInstanceStruct *chartInstance,
   }
 
   if (c4_In_dirtyOnGpu) {
-    cudaMemcpy((void *)c4_c_In, chartInstance->c4_b_gpu_In, 4919040UL,
+    cudaMemcpy((void *)c4_c_In, chartInstance->c4_b_gpu_In, 3686400UL,
                cudaMemcpyDeviceToHost);
   }
 }
@@ -4488,7 +4487,7 @@ static __global__ __launch_bounds__(512, 1) void
 {
   int32_T c4_i;
   c4_i = (int32_T)mwGetGlobalThreadIndex();
-  if (c4_i < 1229760) {
+  if (c4_i < 921600) {
     c4_gpu_In[c4_i] = c4_gpu_In_1[c4_i];
   }
 }
@@ -4547,22 +4546,22 @@ static __global__ __launch_bounds__(1024, 1) void c4_eML_blk_kernel_kernel3(
 }
 
 static __global__ __launch_bounds__(512, 1) void c4_eML_blk_kernel_kernel4
-  (real32_T c4_c_In[1229760], real32_T c4_b_I[1229760])
+  (real32_T c4_c_In[921600], real32_T c4_b_I[921600])
 {
   int32_T c4_i14;
   c4_i14 = (int32_T)mwGetGlobalThreadIndex();
-  if (c4_i14 < 1229760) {
+  if (c4_i14 < 921600) {
     c4_b_I[c4_i14] = c4_c_In[c4_i14];
     c4_c_In[c4_i14] = 0.0F;
   }
 }
 
 static __global__ __launch_bounds__(512, 1) void c4_eML_blk_kernel_kernel5
-  (uint8_T c4_pixCount[854])
+  (uint8_T c4_pixCount[640])
 {
   int32_T c4_i17;
   c4_i17 = (int32_T)mwGetGlobalThreadIndex();
-  if (c4_i17 < 854) {
+  if (c4_i17 < 640) {
     c4_pixCount[c4_i17] = (uint8_T)0U;
   }
 }
@@ -6432,22 +6431,22 @@ static __global__ __launch_bounds__(32, 1) void c4_eML_blk_kernel_kernel115(
 }
 
 static __global__ __launch_bounds__(512, 1) void c4_eML_blk_kernel_kernel116
-  (real32_T c4_c_In[1229760], real32_T c4_b_I[1229760])
+  (real32_T c4_c_In[921600], real32_T c4_b_I[921600])
 {
   int32_T c4_i69;
   c4_i69 = (int32_T)mwGetGlobalThreadIndex();
-  if (c4_i69 < 1229760) {
+  if (c4_i69 < 921600) {
     c4_b_I[c4_i69] = c4_c_In[c4_i69];
     c4_c_In[c4_i69] = 0.0F;
   }
 }
 
 static __global__ __launch_bounds__(512, 1) void c4_eML_blk_kernel_kernel117
-  (uint8_T c4_pixCount[854])
+  (uint8_T c4_pixCount[640])
 {
   int32_T c4_i72;
   c4_i72 = (int32_T)mwGetGlobalThreadIndex();
-  if (c4_i72 < 854) {
+  if (c4_i72 < 640) {
     c4_pixCount[c4_i72] = (uint8_T)0U;
   }
 }
@@ -7089,22 +7088,22 @@ static __global__ __launch_bounds__(32, 1) void c4_eML_blk_kernel_kernel178(
 }
 
 static __global__ __launch_bounds__(512, 1) void c4_eML_blk_kernel_kernel179
-  (real32_T c4_c_In[1229760], real32_T c4_b_I[1229760])
+  (real32_T c4_c_In[921600], real32_T c4_b_I[921600])
 {
   int32_T c4_i128;
   c4_i128 = (int32_T)mwGetGlobalThreadIndex();
-  if (c4_i128 < 1229760) {
+  if (c4_i128 < 921600) {
     c4_b_I[c4_i128] = c4_c_In[c4_i128];
     c4_c_In[c4_i128] = 0.0F;
   }
 }
 
 static __global__ __launch_bounds__(512, 1) void c4_eML_blk_kernel_kernel180
-  (uint8_T c4_pixCount[854])
+  (uint8_T c4_pixCount[640])
 {
   int32_T c4_i131;
   c4_i131 = (int32_T)mwGetGlobalThreadIndex();
-  if (c4_i131 < 854) {
+  if (c4_i131 < 640) {
     c4_pixCount[c4_i131] = (uint8_T)0U;
   }
 }
@@ -7130,11 +7129,11 @@ static __global__ __launch_bounds__(96, 1) void c4_eML_blk_kernel_kernel182(
 }
 
 static __global__ __launch_bounds__(512, 1) void c4_eML_blk_kernel_kernel183(
-  const real32_T c4_c_In[1229760], real32_T c4_b_I[1229760])
+  const real32_T c4_c_In[921600], real32_T c4_b_I[921600])
 {
   int32_T c4_i134;
   c4_i134 = (int32_T)mwGetGlobalThreadIndex();
-  if (c4_i134 < 1229760) {
+  if (c4_i134 < 921600) {
     c4_b_I[c4_i134] = c4_c_In[c4_i134];
   }
 }
@@ -7175,21 +7174,21 @@ static __global__ __launch_bounds__(96, 1) void c4_eML_blk_kernel_kernel185(
 }
 
 static __global__ __launch_bounds__(512, 1) void c4_eML_blk_kernel_kernel186
-  (uint8_T c4_pixCount[854])
+  (uint8_T c4_pixCount[640])
 {
   int32_T c4_i138;
   c4_i138 = (int32_T)mwGetGlobalThreadIndex();
-  if (c4_i138 < 854) {
+  if (c4_i138 < 640) {
     c4_pixCount[c4_i138] = (uint8_T)0U;
   }
 }
 
 static __global__ __launch_bounds__(512, 1) void c4_eML_blk_kernel_kernel187(
-  const real32_T c4_c_In[1229760], real32_T c4_b_I[1229760])
+  const real32_T c4_c_In[921600], real32_T c4_b_I[921600])
 {
   int32_T c4_i139;
   c4_i139 = (int32_T)mwGetGlobalThreadIndex();
-  if (c4_i139 < 1229760) {
+  if (c4_i139 < 921600) {
     c4_b_I[c4_i139] = c4_c_In[c4_i139];
   }
 }
@@ -7230,11 +7229,11 @@ static __global__ __launch_bounds__(96, 1) void c4_eML_blk_kernel_kernel189(
 }
 
 static __global__ __launch_bounds__(512, 1) void c4_eML_blk_kernel_kernel190
-  (uint8_T c4_pixCount[854])
+  (uint8_T c4_pixCount[640])
 {
   int32_T c4_i143;
   c4_i143 = (int32_T)mwGetGlobalThreadIndex();
-  if (c4_i143 < 854) {
+  if (c4_i143 < 640) {
     c4_pixCount[c4_i143] = (uint8_T)0U;
   }
 }
@@ -7262,9 +7261,9 @@ static void init_simulink_io_address(SFc4_LaneDetectionInstanceStruct
     (chartInstance->S, 4);
   chartInstance->c4_scores_sizes = (int32_T (*)[2])
     ssGetCurrentInputPortDimensions_wrapper(chartInstance->S, 4);
-  chartInstance->c4_In = (real32_T (*)[1229760])ssGetInputPortSignal_wrapper
+  chartInstance->c4_In = (real32_T (*)[921600])ssGetInputPortSignal_wrapper
     (chartInstance->S, 5);
-  chartInstance->c4_b_In = (real32_T (*)[1229760])ssGetOutputPortSignal_wrapper
+  chartInstance->c4_b_In = (real32_T (*)[921600])ssGetOutputPortSignal_wrapper
     (chartInstance->S, 1);
 }
 
@@ -7275,10 +7274,10 @@ static void init_simulink_io_address(SFc4_LaneDetectionInstanceStruct
 /* SFunction Glue Code */
 void sf_c4_LaneDetection_get_check_sum(mxArray *plhs[])
 {
-  ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(3851183904U);
-  ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(1645157337U);
-  ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(1285129416U);
-  ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(2343524941U);
+  ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(2683009281U);
+  ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(201091609U);
+  ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(1428204615U);
+  ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(2842182956U);
 }
 
 mxArray *sf_c4_LaneDetection_third_party_uses_info(void)
@@ -7343,7 +7342,7 @@ static const mxArray *sf_get_sim_state_info_c4_LaneDetection(void)
 
 static const char* sf_get_instance_specialization(void)
 {
-  return "s2M8LHaI8EPSrWK6vr0loHF";
+  return "so1Ri5ewkQbm0d2yD9EK30B";
 }
 
 static void sf_opaque_initialize_c4_LaneDetection(void *chartInstanceVar)
@@ -7446,35 +7445,44 @@ static void mdlProcessParameters_c4_LaneDetection(SimStruct *S)
 const char* sf_c4_LaneDetection_get_post_codegen_info(void)
 {
   int i;
-  const char* encStrCodegen [23] = {
-    "eNrtV89v40QUdqpSsQJWFUJCWiHYG5xI2y2rnqBtfqiBdFuRtnuMpuPneMh4xp0ZJ+0RDvwJnLm",
-    "xfwASfwJ3Tly5coEjR97Ybpo4dtK02jRBWHKcsb/3/M373rx5dkqNQwePx3iGHzrOGl7fxHPFSY",
-    "430nFp6Ezurzofp+Of0UhEwTFRJNDOxEOQAL4GLXlkmBQN4clcGBMeKBAUsaFUpsibZkHEmejWI",
-    "0GtP/3SZ9Rv+TLi7j7aEvdI8Cv0FkbmGP1UmQJq6gCu8ZWMOn6dk86AsTL9ig+0q6Ng0hQ0mFYU",
-    "Wlr6MOKGhRxql0AbQhuCjPUNt5YhBirmsnCadqa6dQ2UQcgZEbmz9YluQYgBNnAauvh7FBmcVBZ",
-    "GfaLMPvikB7rJurFPKSDrk2l8cM4EMVIxwmsBr1jDcW7HHPkcShf4hIAgt30FpBtKJkyx/q06zr",
-    "QmyDmHKpxHnWJvLbiIrPhnDPqgCuPmVWQPFOnAkSh8aRyQ2mWs1iBLxmGGBXBG1B5F/TS4hdmLm",
-    "aNbBHWCE7QogkE8yYY+UayH4S30FgUNm5nTlkwUJGLrabDYW60Hk1QYeKtTUSGc60LYiQyb0AMe",
-    "e60SQybDEq/5OK2ZeyIxwDa9i1dDJBgKn8IqUrgsV65eBhDXnRdYWEaRNNJGBhVM3mqzOf54HNY",
-    "QBpRHKORVAUWYBoxZHN5iby7TVnsEIisT08sDJxkyDeVoLxLVvlRdjMmEInIzBatoITDQHdQSV8",
-    "KpxkUzCWa1nIajhPrg2gLDOBziskFsTky0LW17uO56zFxVQVPFwhxVI1x1WIZqNqGuQjgVXSH7o",
-    "q5k0EprfKICVgas4QFqcBKvMUHRFdMGywW7eb0LgElJlGCis49lTl3VkWSuYnbf23Bu9r23b7Hv",
-    "Xdtlr58M+Snl+HGGrha/M4R/tDKKX8u8d+X6Xnwk9rtD9u9k3reasbe4dTy///Kn79jZD3/98ud",
-    "bf/z67W9j88/yKI3xKMX/rd2rldn6hcfp+IPrwjxYaL2x/LbYgyFeqzn+3x/yv56O9dbhTvOANH",
-    "Zqxy318qvnPbXB5UE99vdPaTLflQzf6/tP7Q6BWRnns6INN21k7JhEyfae1XNtSjwepfeT4+8v7",
-    "mf/3m5Wx9Up81vHUUOM5u/d3/909372yfuPp/B/ktH7SdwHtImtLtCm2+0mEdhbGIi3+fH1edc8",
-    "n9XOmbPdsvD83+71636b/Wvtjnale+6X87K77/xm3ccXDT9pH3Ay+PUFnsd9+6vXjf/dma3/+Sg",
-    "dfz74JKr4jLs53XH6GHtYL+/pfyRP7aKchH83g/9xSn8gM3ltx2VfBlD2A8rLe1X8WDBK8rLmof",
-    "qm3NaevYw0DXgTuFe2H15lbPXKVIi2wW8/Aa7FvQCzMdplbLQ9am9stfufnjOxBDzPb80zyPAM5",
-    "sITnfaepdF0FpznZhrNRee5tSQ8N2fSPczwDOfC0yWGtDUlHCzVxY7n9pLo/mxJeH62JHVpayae",
-    "D7kfbc6wbz6k7suRn9sjur+awvMiw/NifvVTep4Gk3K9bX/XzfDtzilPnw/UX3Se/Zl4Puy6T2L",
-    "6LwUpxHI=",
+  const char* encStrCodegen [32] = {
+    "eNrtXM1v40QUT6pSsRKsKoGEtEJixQVOpE1SBBfoNh8iot0tTXc5RjPjST3EHruecbJlT/v1d7A",
+    "Slz1y4AD/CUeuICFx5MgbJ02TiZ1sWrbJi7CUprbfPP/mfXv8nFy+cZCD7SZ8fndyuQ34fhM+a7",
+    "n+9sZgPz/y6R9fz3002P8ZBsnYPyQR8VVu6iaJz4+4CrxYi0A2ZDtIJROyzSMuGdCGQaSzuCnhx",
+    "56QnXosmeGnvnUFc5tuEHvOHowlzj3pnQG3MNaHwKcqIs50nXNHu1EQn7h1j5wMEUe6V3E566jY",
+    "nzYFxXUzDg0sdRB7WoQerz3krCGVJoBYXWBraqJ5RT/MnKaZqWqeEwZ+6AkiU2frEtXkIQhY8/u",
+    "hA3/vxRomZZMxl0R6j7uky9W+6CQ8A8ltnkLBCSok0UEkiFfzvYoZOInt0AM8B4HDvSkCAWx7ES",
+    "edMBBSZ+u/WYeZ1iShHq9yGp9kc2vy09go/4HgPR5lyq1dCbo8Iif8nsy8aCKQ2sNEW0MrmSTTw",
+    "ucPSHSHgf4UdzKtFyxHNQnoiR/DiCwynkyyoY4j0QXxZnKL/YaxzFkuE/t9ZatZZAm3WpdP08KQ",
+    "W53JCvE8lUl2HIT7vMu9hGuVaDKdrM81nU4p4RwHIGBj3tneEEsBih+QVQLpiFR1dS2CJO7chcA",
+    "yTslipQO/AsZb3d+fPD1J1pCaR23CeFoUiIhQHGSWiDebmyOU0T0QAiqdwEsj7lvILKqcasey2g",
+    "uiDshkShC5mILRaCahr05Al+AJ9xU4zTQyo8tZdIwwlzsmwAiPH4DbAG2KTJQJbXfA77pCn1W5Y",
+    "pEIU7Qag9dBGKoZgzoL+X3ZkUFP1qPAbw5ifF8LEBkghvugg+PExyQDVkJpCBfi4vIO52CUJJJC",
+    "nuxBmIvO6gAyVWMm723lLvLeW6+Q987H2d8fj/DJp/DJjXwb+s9G6G+sjdNvWNddOz+WbP3xuyP",
+    "j37aut26NN3Sb8Cn90P3jnT8f//rh7u0XfxW+/9Gev40jP4Ejn/xvxr1cm69euDnYf/88MA8drT",
+    "th34b2qxFc6yn83xvhvznYV8H2kdjhvc431N9yimfVz2tfl7b2En7/5KfjXbPwnh+/bTIEWGViz",
+    "xFrOINCxuyTuJ/ebX1uzJDHjcHx/vb3l1cb/+6urcf1GfPbhL2GHLffy1//9u7VxvevfzgD/y1L",
+    "37eSOqBFTHThLVZu7RMJtYXmSZqf9M/L2vm843LXPA4Lzv/HvX69v0r+2rjkuPwV8+V1jbvq/Ob",
+    "N48tGPy0P5Cz6zSWex1Xrq9dN/1tuvvrng8H+F8NbooorPCelOh6chhq2nXZ2Rew0PJpOH1r0v8",
+    "yoDx5bdm32C27g84LrM69wpwo3CzoKvILywui7Qku1zddY0QAHudcumBuvApR6BSZl6yzwgm7xi",
+    "Ku7XO9sPeCuYGbJJ1kG2BqvObYGxHBv2i226CdUSLT4t1u9OfE/t/A/Xxx+jyhlJjGcA1b8dA78",
+    "zyz8zxaAP+Kq3G7RiEjmFtmFCSHFTzHi58jlP8RP0ePHbT8Euf9itx+C034c5PHTQW7/DnL7Ycj",
+    "zF0Nu/2xV7J+ilz9K/BS5/1Lk/kuR1z8Ut/8WKe74OYofpfzJqsjf8t8XM/AHFv7gv8GvIyIkdw",
+    "wdzGACcZuZA9sDU8EkZ4Y8TpJL+ulTC//TBfvp9shK+bLbeRGfnZdIRj79aQb+Rxb+RwvAz6wnE",
+    "Sjz0Jx18PL5J3L5Y78PpMjrsDnvo55Y+J8sAH/yzkBruxW024rriwehKOM+zjq+RFblOSLSdRyC",
+    "fB2knRE/Z9WXvoXfv5b6ko31jGDy08uuFy9Dv8t5nFeMeNzqd1leOynPZSfL1hfVQyPn0lz9Q8v",
+    "ij3RV8j7O9buSc8n1u8XZ+c6YnS9zfkToj0Xkz8NKzuqsp1M86+m94TrjMudHiiJu7KCsq+mq9M",
+    "GgyYPbGO2kmNWvgGd9n2JcXy6xVVkfIVj8szxW/72cgfPUwnl6LTgdosnEsvErybVj4e1cU73x6",
+    "ZzPXxeHs4c9TvSQv09CkfeDorx/Qd4PWkTeT1xaGflT5PgZevwY+0DKWX1aSPCXVgc/zvqH4M6/",
+    "JeTPwUvI+9FLyN8HGH0fsoe6j4sir98ocv/FL3/sz78otv6W0d9zmff3aJbwfR6KvB8Ad/xh8z0",
+    "/DS384fWtvw7buVDaCUNu5+jvc1HeZ5WR902VCcI+jeJInwZCOeN+P5zg6StA2LdWJqvyOw4jde",
+    "O/EDyhLw==",
     ""
   };
 
-  static char newstr [1585] = "";
+  static char newstr [2261] = "";
   newstr[0] = '\0';
-  for (i = 0; i < 23; i++) {
+  for (i = 0; i < 32; i++) {
     strcat(newstr, encStrCodegen[i]);
   }
 
@@ -7485,10 +7493,10 @@ static void mdlSetWorkWidths_c4_LaneDetection(SimStruct *S)
 {
   const char* newstr = sf_c4_LaneDetection_get_post_codegen_info();
   sf_set_work_widths(S, newstr);
-  ssSetChecksum0(S,(2192001670U));
-  ssSetChecksum1(S,(4019607145U));
-  ssSetChecksum2(S,(3775654583U));
-  ssSetChecksum3(S,(13795783U));
+  ssSetChecksum0(S,(3916865331U));
+  ssSetChecksum1(S,(3112299027U));
+  ssSetChecksum2(S,(2686468130U));
+  ssSetChecksum3(S,(2742693869U));
 }
 
 static void mdlRTW_c4_LaneDetection(SimStruct *S)

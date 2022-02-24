@@ -4,7 +4,7 @@ function tform = get_tformToImage
 
 % Compute extrinsics based on camera setup
 yaw = 0;
-pitch = 0; % pitch of the camera in degrees
+pitch = 14; % pitch of the camera in degrees
 roll = 0;
 
 translation = translationVector(yaw, pitch, roll);
