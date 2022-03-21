@@ -1,0 +1,8 @@
+prefix=/home/hmcl/ADcontrol/SecondaryController/devel
+
+Name: autoware_external_msgs
+Description: Description of autoware_external_msgs
+Version: 1.14.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

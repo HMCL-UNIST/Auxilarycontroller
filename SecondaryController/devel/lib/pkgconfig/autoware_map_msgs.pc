@@ -1,0 +1,8 @@
+prefix=/home/hmcl/ADcontrol/SecondaryController/devel
+
+Name: autoware_map_msgs
+Description: Description of autoware_map_msgs
+Version: 1.14.0
+Cflags: -I/home/hmcl/ADcontrol/SecondaryController/devel/include
+Libs: -L${prefix}/lib 
+Requires: message_runtime std_msgs

@@ -1,0 +1,8 @@
+prefix=/home/hmcl/ADcontrol/SecondaryController/devel
+
+Name: autoware_system_msgs
+Description: Description of autoware_system_msgs
+Version: 1.14.0
+Cflags: -I/home/hmcl/ADcontrol/SecondaryController/devel/include
+Libs: -L${prefix}/lib 
+Requires: message_runtime rosgraph_msgs std_msgs

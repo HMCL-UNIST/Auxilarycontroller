@@ -1,0 +1,8 @@
+prefix=/home/hmcl/ADcontrol/SecondaryController/devel
+
+Name: secondary_controller
+Description: Description of secondary_controller
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

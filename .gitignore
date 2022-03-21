@@ -1,1 +1,11 @@
 # List of untracked files to ignore
+Autoware/
+slprj/
+resources/
+SecondaryController/build
+trainedLaneNet.mat
+yolov2ResNet50VehicleExample.mat
+controller_ert_rtw/
+*.tgz
+*.slxc
+
